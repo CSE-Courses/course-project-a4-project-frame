@@ -1,22 +1,48 @@
-body {
-	min-height: 100%;
+html, body {
+	height: 100%;
+	margin: 0 0;
+}
 
+.Games {
+	padding: 50px;
+	height: 100%;
+	background-color: #ffb347;
 }
 
 .gameTag h1 {
 	color: orange;
 	text-align: center;
+	margin: 0 auto;
 }
 
 .gameTag a {
-	text-decoration:none;
+	-webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+	text-decoration: none;
+	font-family: "Arial Black";
 	color: white;
+
 }
 
 .gameTag {
-	margin:0 auto;
+	margin:0 auto 5% auto;
 	background-color: grey;
-	min-height: 20%;
+	border: 2px solid black;
+	min-height: 8%;
 	width: 80%;
 	align-self: center;
+}
+
+.gameTag :hover a {
+	color: #ffb347;
+}
+
+#ultimate {
+	background-image: url("https://external-preview.redd.it/9PPgk2ZMacD622qQc87wf6z026TmaeqK3nzQlnPC-WY.jpg?width=1024&auto=webp&s=ec9068ec8a49f41785cc923c3d8fa1dfc50cdf0f");
+	/* Make this image referenced to database images posted to website */
+	background-position: center;
+}
+
+#melee {
+
 }
