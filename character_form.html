@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<meta charset="UTF-8" />
+	<title>Add character info</title>
+	<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+	<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+	<script src=https://unpkg.com/@babel/standalone/babel.min.js></script>
+
+	</head>
+	<body>
+
+	<div id="root"></div>
+	<script type="text/babel">
+	
+	class SubmissionForm extends React.Component {
+	
+	  constructor(props) {
+		super(props);
+		this.state = {
+		  character: '',
+		  game: '',
+		  image: null,
+		  move1: '',
+		  move2: '',
+		  move3: '',
+		};
+	  }
+	  
+	  mySubmitHandler = (event) => {
+		//event.preventDefault();
+		//let age = this.state.age;
+		//if (!Number(age)) {
+		//  alert("Your age must be a number");
+		//}
+		alert("Character info submitted.");
+		event.preventDefault();
+	  }
+	  
+	  myChangeHandler = (event) => {
+		let nam = event.target.name;
+		let val = event.target.value;
+		this.setState({[nam]: val});
+	  }
+	  
+	  render() {
+		return (
+		  <form onSubmit={this.mySubmitHandler}>
+		  <h1>Submission form {this.state.character} {this.state.game} {this.state.image} {this.state.move1} {this.state.move2} {this.state.move3}</h1>
+		  <p>Character name:</p>
+		  <input
+			type='text'
+			name='character'
+			onChange={this.myChangeHandler}
+		  />
+		  <p>From game:</p>
+		  <input
+			type='text'
+			name='game'
+			onChange={this.myChangeHandler}
+		  />
+		  <p>Upload image:</p>
+		  <input
+			type='file'
+			name='image'
+			onChange={this.myChangeHandler}
+		  />
+		  <p>Move 1:</p>
+		  <input
+			type='text'
+			name='move1'
+			onChange={this.myChangeHandler}
+		  />
+		  <p>Move 2:</p>
+		  <input
+			type='text'
+			name='move2'
+			onChange={this.myChangeHandler}
+		  />
+		  <p>Move 3:</p>
+		  <input
+			type='text'
+			name='move3'
+			onChange={this.myChangeHandler}
+		  />
+		  <br/>
+		  <br/>
+		  <input type='submit' />
+		  </form>
+		);
+	  }
+	}
+
+	ReactDOM.render(<SubmissionForm />, document.getElementById('root'));
+
+	</script>
+
+	</body>
+</html>
