@@ -1,18 +1,24 @@
+*, html{
+	margin: 0;
+}
+
 html, body {
 	height: 100%;
 	margin: 0 0;
 }
 
 .Games {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 	padding: 50px;
 	height: 100%;
-	background-color: #ffb347;
+	background-color: white;
 }
 
 .gameTag h1 {
 	color: orange;
 	text-align: center;
-	margin: 0 auto;
 }
 
 .gameTag a {
@@ -21,24 +27,30 @@ html, body {
 	text-decoration: none;
 	font-family: "Arial Black";
 	color: white;
-
 }
 
 .gameTag {
-	margin:0 auto 5% auto;
+	margin:10px;
 	background-color: grey;
 	border: 2px solid black;
 	min-height: 8%;
-	width: 80%;
+	/*width: 80%;*/
 	align-self: center;
+	min-width:400px;
 }
 
 .gameTag :hover a {
 	color: #ffb347;
 }
 
-#ultimate {
+#Ultimate {
 	background-image: url("https://external-preview.redd.it/9PPgk2ZMacD622qQc87wf6z026TmaeqK3nzQlnPC-WY.jpg?width=1024&auto=webp&s=ec9068ec8a49f41785cc923c3d8fa1dfc50cdf0f");
+	/* Make this image referenced to database images posted to website */
+	background-position: center;
+}
+
+#Tekken {
+	background-image: url("https://media.eventhubs.com/images/2017/02/08_tekkenbanner.jpg");
 	/* Make this image referenced to database images posted to website */
 	background-position: center;
 }
