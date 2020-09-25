@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8" />
+  <title>Add character info</title>
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src=https://unpkg.com/@babel/standalone/babel.min.js></script>
+  <link href="css/form_styles.css" rel="stylesheet" />
+  </head>
+  <body>
+
+  <div id="root"></div>
+  <script type="text/babel">
+
+  class SubmissionForm extends React.Component {
+
+    constructor(props) {
+    super(props);
+    this.state = {
+      character: '',
+      game: '',
+      description: '',
+      image: null,
+      move1: '',
+      move2: '',
+      move3: '',
+    };
+    }
+    
+    mySubmitHandler = (event) => {
+    alert("Character info submitted.");
+    event.preventDefault();
+    }
+    
+    myChangeHandler = (event) => {
+    let nam = event.target.name;
+    let val = event.target.value;
+    this.setState({[nam]: val});
+    }
+    
+    render() {
+    return (
+      <form onSubmit={this.mySubmitHandler}>
+        <h1>Submission form</h1>
+        <br/>
+        <br/>
+        <div class="container">
+          <div class="row">
+          <div class="col-25">
+            <label>Character name:</label>
+          </div>
+          <div class="col-75">
+            <input
+            type='text'
+            name='character'
+            onChange={this.myChangeHandler}
+            />
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-25">
+            <label>Upload character image:</label>
+          </div>
+          <div class="col-75">
+            <input
+            type='file'
+            name='image'
+            accept=".jpg,.jpeg,.png,.bmp,.gif"
+            onChange={this.myChangeHandler}
+            />
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-25">
+            <label>From game:</label>
+          </div>
+          <div class="col-75">
+            <select value={this.state.game}>
+            <option value="Ultimate">Ultimate</option>
+            <option value="Tekken">Tekken</option>
+            <option value="Melee">Melee</option>
+            <option value="DBZ">DBZ</option>
+            </select>
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-25">
+            <label>Description:</label>
+          </div>
+          <div class="col-75">
+            <input
+            type='text'
+            name='description'
+            onChange={this.myChangeHandler}
+            />
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-25">
+            <label>Move 1:</label>
+          </div>
+          <div class="col-75">
+            <input
+            type='text'
+            name='move1'
+            onChange={this.myChangeHandler}
+            />
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-25">
+            <label>Move 2:</label>
+          </div>
+          <div class="col-75">
+            <input
+            type='text'
+            name='move2'
+            onChange={this.myChangeHandler}
+            />
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-25">
+            <label>Move 3:</label>
+          </div>
+          <div class="col-75">
+            <input
+            type='text'
+            name='move3'
+            onChange={this.myChangeHandler}
+            />
+          </div>
+          </div>
+          <br/>
+          <br/>
+          <div class="row">
+          <input type='submit' />
+          </div>
+        </div>
+      </form>
+    );
+    }
+  }
+
+  ReactDOM.render(<SubmissionForm />, document.getElementById('root'));
+
+  </script>
+
+  </body>
+</html>
