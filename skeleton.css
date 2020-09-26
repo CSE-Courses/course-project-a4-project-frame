@@ -1,0 +1,1747 @@
+@import url('https://fonts.googleapis.com/css2?family=Teko&display=swap');
+
+
+* {
+	box-sizing: border-box;
+	font-family: 'PT Sans', sans-serif;
+}
+
+img {
+	max-width: 100%;
+}
+
+body, html {
+	color: #222;
+	background: #333;
+	margin: 0;
+}
+
+p {
+	line-height: 1.5em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Poppins', sans-serif;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+a {
+	color: #bf2000;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #bf2000;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #f22800;
+	text-decoration: none;
+}
+
+/* Main Index Styling */
+
+.siteheader {
+	background: #ffc640;
+	border-bottom: 6px solid #ff9a40;
+	margin: auto;
+	text-align: center;
+	padding: 0.66em 0.33em;
+}
+
+
+#searchbox {
+	display: block;
+	margin: auto;
+	flex-grow: 1;
+	padding: 0.75em;
+	margin: 1.5em 0.7em;
+	font-size: 11pt;
+	font-family: 'Poppins', sans-serif;
+	width: 100%;
+}
+
+.charactericon {
+	width: 300px;
+	flex-grow: 1;
+	border: 1px solid #222;
+	border-bottom: 3px solid #111;
+	padding: 0;
+	text-align: center;
+	margin: 0.33em;
+	user-select: none;
+	background-color: #555;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center 15%;
+	color: #fff;
+	text-shadow: 1px 1px 6px #111;
+	font-family: 'Poppins', sans-serif;
+	font-size: 22pt;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: 0.1s;
+	transition-timing-function: ease-in-out;
+}
+
+.charactericon:hover, .charactericon:active {
+	border-color: #ffc640;
+	border-bottom-color: #ff9a40;
+	transition: 0.1s;
+	transition-timing-function: ease-in-out;
+}
+
+.charactericon a, .charactericon a:visited {
+	padding: 0.66em 0em;
+	width: 100%;
+	color: #fff;
+	text-shadow: 1px 1px 6px #111;
+	font-family: 'Poppins', sans-serif;
+	font-size: 22pt;
+	text-decoration: none;
+}
+
+.character {
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+}
+
+.stats {
+	background-image: url('characterart/allpanoramic.jpg');
+	background-position: center 15%;
+}
+
+#topcharbg {
+	background: #fff;
+	padding: 1em 0;
+}
+
+#contentcontainer {
+	background: #fcfcfc;
+}
+
+.charactername {
+	text-align: center;
+	color: #fcfcfc;
+	background: #333;
+	padding: 1em 2em;
+	margin: 0 auto 0 auto;
+	text-transform: capitalize;
+}
+
+#characterimage {
+	padding: 1.5em 4em;
+	margin: auto;
+	display: block;
+	width: 100%;
+	max-width: 450px;
+	height: 40vh;
+	max-height: 450px;
+}
+
+.movecategory {
+	margin: 1em auto 0.5em auto;
+	text-align: center;
+	background: #b19cd9;
+	border: 6px solid black;
+	border-left: 0px;
+	border-right: 0px;
+	border-top: 0px;
+	padding: 1.1em 1em;
+	margin: 0 0 1em 0;
+}
+
+.moves {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	padding: 0 0.6em 2em 0.6em;
+	align-items: baseline;
+}
+
+.movecontainer {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	margin: 0.5em 0.2em;
+	align-content: flex-start;
+}
+
+.movecontainer div {
+	padding: 0.5em;
+	border: 1px solid #ccc;
+	border-top: 0px;
+	width: 100%;
+	user-select: none;
+	text-transform: capitalize;
+	order: 5;
+	font-size: 75%;
+}
+
+.movecontainer.plain {
+	border-top: 1px solid #ccc;
+	color: #222;
+}
+
+.movecontainer.plain div {
+	font-size: 100%;
+	text-transform: none;
+}
+
+.plain.misc {
+	margin: 0 auto 1em auto;
+}
+
+.movename {
+	width: 100%;
+	background: #444;
+	color: #fcfcfc;
+	font-weight: bold;
+	border: 0px!important;
+	order: 0!important;
+	font-size:100%!important;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 800;
+}
+
+.startup {
+	background: #B5D3E7;
+	color: #fcfcfc;
+	order: 1!important;
+	font-size: 100%!important;
+	font-weight: bold;
+	border: 0px!important;
+	word-break: break-word; 
+}
+
+.startup:after {
+	content: "frame startup";
+}
+
+.totalframes:after {
+	content: "total frames";
+}
+
+.landinglag:after {
+	content: "frames landing lag";
+}
+
+.notes {
+	text-transform: none!important;
+}
+
+.notes:before {
+	content: "Note: ";
+}
+
+.basedamage:after {
+	content: "% base damage";
+	margin-left: -4px;
+}
+
+.shieldlag:after {
+	content: "frames shield lag";
+}
+
+.shieldstun:after {
+	content: "frames shield stun";
+}
+
+.whichhitbox:after {
+	content: "(If the move has multiple hitboxes, which hitbox is it?)";
+	text-transform: none!important;
+	display: block;
+	margin-top: 0.2em;
+}
+
+.advantage {
+	background: #bf2000;
+	color: #fcfcfc;
+	order: 2!important;
+	font-size: 100%!important;
+	font-weight: bold;
+	border: 0px!important;
+	text-transform: none!important;
+	word-break: break-all; 
+}
+
+.advantage:after {
+	content: "On Shield";
+}
+
+.hitbox {
+	order: 4!important;
+}
+
+#imgtoggle a, #hitboxtype a {
+	background: transparent!important;
+}
+
+#imgtoggle a:hover, #hitboxtype a:hover {
+	background: transparent!important;
+}
+
+#imgtoggle a::after {
+	content: 'ON';
+	background: #00994d!important;
+	color: #f3f3f3;
+	padding: 0.66em 1.5em;
+	margin: 0 0.3em;
+	transition: 0.3s;
+	transition-timing-function: ease;
+}
+
+#imgtoggle.disabled a::after {
+	content:'OFF';
+	background: #232323!important;
+	color: #f3f3f3;
+	padding: 0.66em 1.5em;
+	margin: 0 0.3em;
+	transition: 0.3s;
+	transition-timing-function: ease;
+}
+
+#imgtoggle a:hover::after {
+	background: #007339!important;
+}
+
+#imgtoggle.disabled a:hover::after {
+	background: #454545!important;
+}
+
+#hitboxtype {
+	min-width: 3em;
+}
+
+#hitboxtype a::after {
+	content: 'Standard';
+	background: #00994d!important;
+	color: #f3f3f3;
+	padding: 0.66em 1em;
+	margin: 0 0.3em;
+	transition: 0.3s;
+	transition-timing-function: ease;
+}
+
+#hitboxtype.disabled a::after {
+	content:'ID Number';
+	background: #3c647d!important;
+	color: #f3f3f3;
+	padding: 0.66em 1em;
+	margin: 0 0.3em;
+	transition: 0.3s;
+	transition-timing-function: ease;
+}
+
+#hitboxtype a:hover::after {
+	background: #007339!important;
+}
+
+#hitboxtype.disabled a:hover::after {
+	background: #305063!important;
+}
+
+.hitbox img {
+	width: 100%;
+}
+
+.activeframes {
+	background: #3c647d;
+	color: #fcfcfc;
+	order: 3!important;
+	font-size: 100%!important;
+	font-weight: bold;
+	border: 0px!important;
+	text-transform: none!important;
+	word-break: break-all; 
+}
+
+.activeframes:before {
+	content: "Active on ";
+}
+
+.oos1 {
+	background: #8cff8c;
+}
+
+.oos2 {
+	background: #a6ffa6;
+}
+
+.oos3 {
+	background: #bfffbf;
+}
+
+/* Stats Page Stylings */
+
+.statspagecontainer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.statstablecontainer {
+	flex-grow: 1;
+	text-align: center;
+}
+
+.statstablecontainer h2 {
+	background: #ffc640;
+	border-bottom: 6px solid #ff9a40;
+	padding: 1em;
+	color: #222;
+	margin: 0 0 1em 0;
+}
+
+.statstablecontainer tr:active, .statstablecontainer tr:hover {
+	outline: 3px solid #ffc640;
+	background: #ffecbf!important;
+}
+
+.statstablecontainer thead tr:active, .statstablecontainer thead tr:hover {
+	border: none;
+}
+
+.tablescroller {
+	overflow-x: scroll;
+	max-width: 95vw;
+	margin: auto;
+}
+
+.tablescroller table {
+	font-size: 10pt;
+}
+
+.sortarrow, .sortheader, .unsortable {
+	white-space: nowrap;
+}
+
+.statstable {
+	border: 1px solid #ccc;
+	overflow: hidden;
+}
+
+.statstable, .statstable tbody, .statstable tr, .statstable td {
+	text-align: left;
+}
+
+.statstable {
+	margin: 1em auto 1em auto;
+}
+
+.statstable td {
+	padding: 0.5em;
+	border-bottom: 1px solid #ccc;
+}
+
+table#outofshieldtable {
+	
+}
+
+.statstablecontainer table tr:nth-of-type(even) {
+	background: #f5f5f5;
+}
+
+table#outofshieldtable thead tr th:nth-of-type(14), table#outofshieldtable tr td:nth-of-type(14), table#walkspeedtable thead tr th:nth-of-type(1), table#walkspeedtable tr td:nth-of-type(1), table#weighttable thead tr th:nth-of-type(1), table#weighttable tr td:nth-of-type(1), table#fallspeedtable thead tr th:nth-of-type(1), table#fallspeedtable tr td:nth-of-type(1), table#airspeedtable thead tr th:nth-of-type(1), table#airspeedtable tr td:nth-of-type(1), table#airaccelerationtable thead tr th:nth-of-type(1), table#airaccelerationtable tr td:nth-of-type(1) {
+	display: none;
+}
+
+th.headerSort {
+		background: #888;
+}
+
+th.headerSort, th.headerSort a.sortheader {
+	padding: 1em 1em 1em 0.5em;
+}
+
+a.sortheader, a.sortheader:visited {
+	color: #fcfcfc;
+}
+
+.unsortable {
+	font-weight: normal;
+	color: #eee;
+}
+
+a.sortheader:active, a.sortheader:hover {
+	color: #eee;
+}
+
+.oosparagraph {
+	margin: 0.75em 1.5em; 
+	font-size: 10pt;
+}
+
+
+@media screen and (min-width: 800px) {
+	
+	.tablescroller {
+		overflow: auto;
+	}
+	
+	.tablescroller.oos {
+		max-width: 95vw;
+		overflow-x: scroll;
+	}
+	
+	#searchbox {
+		margin: 2em 0.9em 1em 0.9em;
+	}
+	
+	.moves, .characternav {
+		max-width: 1680px;
+		margin: auto;
+		padding: 0 1em;
+	}
+	
+	.movecontainer {
+		width: 300px;
+		flex-grow: 1;
+	}
+	
+	.charactericon {
+		margin: 0.9em 0.45em;
+		min-height: 120px;
+		max-width: 500px;
+	}
+	
+	.charactericon a {
+	padding: 1.22em 0em;
+	}
+}
+
+/* Pop Up Window CSS */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 2em auto;
+  padding: 1em;
+  background: #fff;
+  width: 40%;
+  position: relative;
+  transition: all 1s ease-in-out;
+}
+
+.popup h2 {
+  margin: 0;
+  color: #333;
+  text-align: left;
+}
+
+.popup a, .popup a:visited {
+	color: #bf2000;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.popup a:hover {
+	color: #f22800;
+}
+
+.popup p, .popup ul li {
+	margin: 0.33em;
+}
+
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 2ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #bf2000;
+}
+.popup .close:hover {
+  color: #f22800;
+}
+.popup .content {
+  max-height: 80vh;
+  overflow: auto;
+  -webkit-appearance: none;
+  text-align: left;
+}
+
+@media screen and (max-width: 700px){
+  .box{
+    width: 85%;
+  }
+  .popup{
+    width: 85%;
+  }
+}
+
+/* SMART FIXED NAV CSS */
+
+a.choosechar, a.choosechar:visited {
+	background: #bd0000!important;
+	color: #fff!important;
+}
+
+a.choosechar:hover {
+	background: #bd2626!important;
+}
+
+
+.cd-container {
+  width: 90%;
+  max-width: 1170px;
+  margin: 0 auto;
+}
+.cd-container::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+
+#cd-nav ul {
+  position: fixed;
+  width: 90%;
+  max-width: 400px;
+  right: 5%;
+  bottom: 20px;
+  border-radius: 0em;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+  background: white;
+  visibility: hidden;
+  overflow: hidden;
+  z-index: 1;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+  -webkit-transform-origin: 100% 100%;
+  -moz-transform-origin: 100% 100%;
+  -ms-transform-origin: 100% 100%;
+  -o-transform-origin: 100% 100%;
+  transform-origin: 100% 100%;
+  -webkit-transition: -webkit-transform 0.3s, visibility 0s 0.3s;
+  -moz-transition: -moz-transform 0.3s, visibility 0s 0.3s;
+  transition: transform 0.3s, visibility 0s 0.3s;
+  padding: 0;
+  list-style-type: none;
+}
+#cd-nav ul li {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+#cd-nav ul.is-visible {
+  visibility: visible;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: -webkit-transform 0.3s, visibility 0s 0s;
+  -moz-transition: -moz-transform 0.3s, visibility 0s 0s;
+  transition: transform 0.3s, visibility 0s 0s;
+}
+#cd-nav ul.is-visible li:nth-child(1) {
+  /* list items animation */
+  -webkit-animation: cd-slide-in 0.2s;
+  -moz-animation: cd-slide-in 0.2s;
+  animation: cd-slide-in 0.2s;
+}
+#cd-nav ul.is-visible li:nth-child(2) {
+  -webkit-animation: cd-slide-in 0.3s;
+  -moz-animation: cd-slide-in 0.3s;
+  animation: cd-slide-in 0.3s;
+}
+#cd-nav ul.is-visible li:nth-child(3) {
+  -webkit-animation: cd-slide-in 0.4s;
+  -moz-animation: cd-slide-in 0.4s;
+  animation: cd-slide-in 0.4s;
+}
+#cd-nav ul.is-visible li:nth-child(4) {
+  -webkit-animation: cd-slide-in 0.5s;
+  -moz-animation: cd-slide-in 0.5s;
+  animation: cd-slide-in 0.5s;
+}
+#cd-nav ul.is-visible li:nth-child(5) {
+  -webkit-animation: cd-slide-in 0.6s;
+  -moz-animation: cd-slide-in 0.6s;
+  animation: cd-slide-in 0.6s;
+}
+#cd-nav li a {
+  display: block;
+  padding: 3vh 1.6em;
+  border-bottom: 1px solid #ccc;
+}
+#cd-nav li:last-child a {
+  border-bottom: none;
+}
+
+ #cd-nav li a, #cd-nav li a:visited  {
+	color: #333;
+	font-family: 'Poppins', sans-serif;
+	text-decoration: none;
+}
+#cd-nav li a:hover {
+    color: #555;
+	background: #eee;
+}
+@media only screen and (min-width: 1170px) {
+	
+.movecontainer {
+	max-width: 500px;
+}
+	
+#topcharbg {
+	padding: 0 0 1em 0;
+}
+	
+  #cd-nav ul {
+    /* the navigation moves to the top */
+    position: relative;
+    width: auto;
+    max-width: none;
+    bottom: auto;
+    top: 0;
+	margin-top: 0;
+    background: transparent;
+    visibility: visible;
+    box-shadow: none;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: all 0s;
+    -moz-transition: all 0s;
+    transition: all 0s;
+	width: 100%;
+	padding: 1.25em;
+	right: 0;
+	text-align: center;
+	user-select: none;
+  }
+  #cd-nav li {
+    display: inline-block;
+  }
+  #cd-nav li a, #cd-nav li a:visited  {
+    opacity: 1;
+    padding: .66em;
+    margin-left: 1.6em;
+    border-bottom: none;
+	transition: 0.2s;
+  }
+  #cd-nav.is-fixed ul {
+    /* when the user scrolls down, the navigation moves to the bottom right in Fixed position - as on touch devices */
+    position: fixed;
+    width: 90%;
+    max-width: 400px;
+    bottom: 20px;
+    top: auto;
+    background: white;
+    visibility: hidden;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+	padding: 0;
+	 list-style-type: none;
+  }
+  #cd-nav.is-fixed ul li {
+    display: block;
+  }
+  #cd-nav.is-fixed ul li a {
+    padding: 1.6em;
+    margin-left: 0;
+    border-bottom: 1px solid #ccc;
+  }
+  #cd-nav ul.has-transitions {
+    /* this class is used to bring back transitions when the navigation moves at the bottom right */
+    -webkit-transition: -webkit-transform 0.3s, visibility 0s 0.3s;
+    -moz-transition: -moz-transform 0.3s, visibility 0s 0.3s;
+    transition: transform 0.3s, visibility 0s 0.3s;
+  }
+  #cd-nav ul.is-visible {
+    /* this class is used to bring back the navigation animation - as on touch devices */
+    visibility: visible;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: -webkit-transform 0.3s, visibility 0s 0s;
+    -moz-transition: -moz-transform 0.3s, visibility 0s 0s;
+    transition: transform 0.3s, visibility 0s 0s;
+  }
+  #cd-nav ul.is-hidden {
+    /* this class is used to animate the scale down the navigation when the user scrolls down with the navigation still open */
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: -webkit-transform 0.3s;
+    -moz-transition: -moz-transform 0.3s;
+    transition: transform 0.3s;
+  }
+}
+
+.cd-nav-trigger {
+  position: fixed;
+  bottom: 20px;
+  right: 5%;
+  width: 52px;
+  height: 52px;
+  background: white;
+  border-radius: 0em;
+  border: 2px solid #bd0000;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+  /* image replacement */
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  z-index: 2;
+}
+.cd-nav-trigger span {
+  /* the span element is used to create the menu icon */
+  position: absolute;
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #bd0000;
+  top: 50%;
+  margin-top: -1px;
+  left: 50%;
+  margin-left: -10px;
+  -webkit-transition: background 0.3s;
+  -moz-transition: background 0.3s;
+  transition: background 0.3s;
+}
+.cd-nav-trigger span::before, .cd-nav-trigger span::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  background: inherit;
+  width: 100%;
+  height: 100%;
+  /* Force Hardware Acceleration in WebKit */
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: -webkit-transform 0.3s, background 0s;
+  -moz-transition: -moz-transform 0.3s, background 0s;
+  transition: transform 0.3s, background 0s;
+}
+.cd-nav-trigger span::before {
+  top: -6px;
+  -webkit-transform: rotate(0);
+  -moz-transform: rotate(0);
+  -ms-transform: rotate(0);
+  -o-transform: rotate(0);
+  transform: rotate(0);
+}
+.cd-nav-trigger span::after {
+  bottom: -6px;
+  -webkit-transform: rotate(0);
+  -moz-transform: rotate(0);
+  -ms-transform: rotate(0);
+  -o-transform: rotate(0);
+  transform: rotate(0);
+}
+.cd-nav-trigger.menu-is-open {
+  box-shadow: none;
+}
+.cd-nav-trigger.menu-is-open span {
+  background: rgba(232, 74, 100, 0);
+}
+.cd-nav-trigger.menu-is-open span::before, .cd-nav-trigger.menu-is-open span::after {
+  background: #bd0000;
+}
+.cd-nav-trigger.menu-is-open span::before {
+  top: 0;
+  -webkit-transform: rotate(135deg);
+  -moz-transform: rotate(135deg);
+  -ms-transform: rotate(135deg);
+  -o-transform: rotate(135deg);
+  transform: rotate(135deg);
+}
+.cd-nav-trigger.menu-is-open span::after {
+  bottom: 0;
+  -webkit-transform: rotate(225deg);
+  -moz-transform: rotate(225deg);
+  -ms-transform: rotate(225deg);
+  -o-transform: rotate(225deg);
+  transform: rotate(225deg);
+}
+@media only screen and (min-width: 1170px) {
+  .cd-nav-trigger {
+    /* the the menu triger is hidden by default on desktop devices */
+    visibility: hidden;
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: -webkit-transform 0.3s, visibility 0s 0.3s;
+    -moz-transition: -moz-transform 0.3s, visibility 0s 0.3s;
+    transition: transform 0.3s, visibility 0s 0.3s;
+  }
+  .is-fixed .cd-nav-trigger {
+    visibility: visible;
+    -webkit-transition: all 0s;
+    -moz-transition: all 0s;
+    transition: all 0s;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+    -webkit-animation: cd-bounce-in 0.3s linear;
+    -moz-animation: cd-bounce-in 0.3s linear;
+    animation: cd-bounce-in 0.3s linear;
+	right: 1%;
+  }
+}
+
+#cd-gallery-items li {
+  margin-bottom: 1.5em;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 0em;
+}
+#cd-gallery-items li img {
+  width: 100%;
+  display: block;
+  border-radius: 0em;
+}
+@media only screen and (min-width: 768px) {
+  #cd-gallery-items li {
+    width: 48%;
+    float: left;
+    margin-bottom: 2em;
+    margin-right: 4%;
+  }
+  #cd-gallery-items li:nth-child(2n) {
+    margin-right: 0;
+  }
+}
+@media only screen and (min-width: 1170px) {
+  #cd-gallery-items li {
+    width: 31%;
+    float: left;
+    margin-bottom: 2.5em;
+    margin-right: 3.5%;
+  }
+  #cd-gallery-items li:nth-child(2n) {
+    margin-right: 3.5%;
+  }
+  #cd-gallery-items li:nth-child(3n) {
+    margin-right: 0;
+  }
+}
+
+@-webkit-keyframes cd-slide-in {
+  0% {
+    -webkit-transform: translateX(100px);
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+  }
+}
+@-moz-keyframes cd-slide-in {
+  0% {
+    -moz-transform: translateX(100px);
+  }
+
+  100% {
+    -moz-transform: translateY(0);
+  }
+}
+@keyframes cd-slide-in {
+  0% {
+    -webkit-transform: translateX(100px);
+    -moz-transform: translateX(100px);
+    -ms-transform: translateX(100px);
+    -o-transform: translateX(100px);
+    transform: translateX(100px);
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+@-webkit-keyframes cd-bounce-in {
+  0% {
+    -webkit-transform: scale(0);
+  }
+
+  60% {
+    -webkit-transform: scale(1.2);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+  }
+}
+@-moz-keyframes cd-bounce-in {
+  0% {
+    -moz-transform: scale(0);
+  }
+
+  60% {
+    -moz-transform: scale(1.2);
+  }
+
+  100% {
+    -moz-transform: scale(1);
+  }
+}
+@keyframes cd-bounce-in {
+  0% {
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+  }
+
+  60% {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+
+	/* LIBGIF and FEATHERLIGHT for Hitbox Pausing */
+		.hitbox a {
+			cursor: pointer;
+		}
+
+		.hitbox a:hover img {
+			opacity: 0.9;
+		}
+		
+		.hitbox a:after {
+			content: "Click to view frame-by-frame of hitbox image";
+			text-transform: none;
+			width: 100%;
+			clear: both;
+			float: left;
+			margin: 0 0 0.75em 0;
+		}
+		
+		.featherlight .featherlight-close-icon {
+			display: none;
+		}
+
+		.featherlight-content {
+			max-width: 100vw!important;
+		}
+
+		.featherlight:last-of-type {
+			-webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+
+		.playbackcontainer {
+			width: 100%;
+			text-align: center;
+			margin: auto;
+		}
+
+		.playbackcontrols {
+			width: 100%;
+			text-align: center;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+		}
+
+		.playbackbutton {
+			padding: 1em;
+			margin: 0.3em 0;
+			border: 1px solid #bd0000;
+			z-index: 1;
+			flex-grow: 1;
+			background: #bd0000;
+			color: #fcfcfc;
+			max-width: 48.5%;
+		}
+
+		.playbackbutton:active, .playbackbutton:hover {
+			background: #bd2626;
+			color: #fcfcfc;
+		}
+
+		/* Metal LIBGIF Canvas Responsive Fitting*/
+		canvas {
+			max-width:100%;
+			max-height: 55vh;
+			margin: auto;
+			display: block;
+		} 
+		.jsgif, .jsgif_toolbar {
+			border: 0!important; 
+			padding: 0!important; 
+			outline: 0!important;
+		}
+			/* Let canvas get a little bigger on desktop */
+			@media only screen and (min-width: 1280px) {
+				canvas {
+					max-height: 70vh;
+				}
+			}
+
+		/**
+		 * Featherlight â€“ ultra slim jQuery lightbox
+		 * Version 1.7.13 - http://noelboss.github.io/featherlight/
+		 *
+		 * Copyright 2018, NoÃ«l Raoul Bossart (http://www.noelboss.com)
+		 * MIT Licensed.
+		**/
+
+		html.with-featherlight {
+			/* disable global scrolling when featherlights are visible */
+			overflow: hidden;
+		}
+
+		.featherlight {
+			display: none;
+
+			/* dimensions: spanning the background from edge to edge */
+			position:fixed;
+			top: 0; right: 0; bottom: 0; left: 0;
+			z-index: 2147483647; /* z-index needs to be >= elements on the site. */
+
+			/* position: centering content */
+			text-align: center;
+
+			/* insures that the ::before pseudo element doesn't force wrap with fixed width content; */
+			white-space: nowrap;
+
+			/* styling */
+			cursor: pointer;
+			background: #333;
+			/* IE8 "hack" for nested featherlights */
+			background: rgba(0, 0, 0, 0);
+		}
+
+		/* support for nested featherlights. Does not work in IE8 (use JS to fix) */
+		.featherlight:last-of-type {
+			background: rgba(0, 0, 0, 0.8);
+		}
+
+		.featherlight:before {
+			/* position: trick to center content vertically */
+			content: '';
+			display: inline-block;
+			height: 100%;
+			vertical-align: middle;
+		}
+
+		.featherlight .featherlight-content {
+			/* make content container for positioned elements (close button) */
+			position: relative;
+
+			/* position: centering vertical and horizontal */
+			text-align: left;
+			vertical-align: middle;
+			display: inline-block;
+
+			/* dimensions: cut off images */
+			overflow: auto;
+			padding: 25px 25px 0;
+			border-bottom: 25px solid transparent;
+
+			/* dimensions: handling large content */
+			margin-left: 5%;
+			margin-right: 5%;
+			max-height: 95%;
+
+			/* styling */
+			background: #fff;
+			cursor: auto;
+
+			/* reset white-space wrapping */
+			white-space: normal;
+		}
+
+		/* contains the content */
+		.featherlight .featherlight-inner {
+			/* make sure its visible */
+			display: block;
+		}
+
+		/* don't show these though */
+		.featherlight script.featherlight-inner,
+		.featherlight link.featherlight-inner,
+		.featherlight style.featherlight-inner {
+			display: none;
+		}
+
+		.featherlight .featherlight-close-icon {
+			/* position: centering vertical and horizontal */
+			position: absolute;
+			z-index: 9999;
+			top: 0;
+			right: 0;
+
+			/* dimensions: 25px x 25px */
+			line-height: 25px;
+			width: 25px;
+
+			/* styling */
+			cursor: pointer;
+			text-align: center;
+			font-family: Arial, sans-serif;
+			background: #fff; /* Set the background in case it overlaps the content */
+			background: rgba(255, 255, 255, 0.3);
+			color: #000;
+			border: none;
+			padding: 0;
+		}
+
+		/* See http://stackoverflow.com/questions/16077341/how-to-reset-all-default-styles-of-the-html5-button-element */
+		.featherlight .featherlight-close-icon::-moz-focus-inner {
+			border: 0;
+			padding: 0;
+		}
+
+		.featherlight .featherlight-image {
+			/* styling */
+			width: 100%;
+		}
+
+
+		.featherlight-iframe .featherlight-content {
+			/* removed the border for image croping since iframe is edge to edge */
+			border-bottom: 0;
+			padding: 0;
+			-webkit-overflow-scrolling: touch;
+		}
+
+		.featherlight iframe {
+			/* styling */
+			border: none;
+		}
+
+		.featherlight * { /* See https://github.com/noelboss/featherlight/issues/42 */
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+		
+		.featherlight .featherlight-content {
+			border-bottom: 10px solid transparent;
+			border-top: 10px solid transparent;
+			padding: 0 10px;
+		}
+
+		/* handling phones and small screens */
+		@media only screen and (max-width: 1024px) {
+			.featherlight .featherlight-content {
+				/* dimensions: maximize lightbox with for small screens */
+				margin-left: 0;
+				margin-right: 0;
+				max-height: 85vh;
+				padding: 0 10px;
+			}
+		}
+
+		/* hide non featherlight items when printing */
+		@media print {
+			html.with-featherlight > * > :not(.featherlight) {
+				display: none;
+			}
+		}
+
+
+/* START Dark Mode Conditionals */
+@media (prefers-color-scheme: dark) {
+	
+		.featherlight-content {
+			background: #010101!important;
+			color: #fcfcfc;
+			outline: 3px solid #999;
+		}
+	
+		body, html, .characternav {
+			background: #151515!important;
+		}
+		
+		.charactername {
+			background: #111;
+		}
+		
+		.themeicon {
+			display: none;
+		}
+	
+		#searchlabel {
+			font-size:0.1%; 
+			color: #151515; 
+			user-select: none; 
+			margin-bottom:-1.25em;
+		}
+
+		#searchbox {
+			display: block;
+			margin: auto;
+			flex-grow: 1;
+			padding: 0.75em;
+			margin: 1.5em 0.7em;
+			font-size: 11pt;
+			font-family: 'Poppins', sans-serif;
+			width: 100%;
+			background: #333;
+			border: 1px solid #777;
+			border-bottom: 3px solid #555;
+			color: #fcfcfc;
+		}
+	
+		#topcharbg {
+			background: #333;
+		}
+		
+		#contentcontainer {
+			background: #222;
+		}
+		
+		.movecontainer {
+			border: 1px solid #ccc;
+			color: #fcfcfc;
+		}
+		
+		.movecontainer div {
+			border-left: 0!important;
+			border-right: 0!important;
+		}
+		
+		.movecontainer.plain {
+			color: #fcfcfc;
+		}
+		
+		.oos1, .oos2, .oos3 {
+			color: #222;
+		}
+		
+		.plain.misc {
+			color: #fcfcfc;
+		}
+		
+		.statstablecontainer table tr:nth-of-type(even) {
+			background: #555;
+		}
+		
+		.statstablecontainer {
+			color: #fcfcfc;
+		}
+		
+		.statstablecontainer tr:active, .statstablecontainer tr:hover {
+			color: #222;
+		}
+		
+		/* Character Pages Styling (Dark Theme Preferred) */
+		
+		.charactericon {
+			border: 1px solid #777;
+		}
+		
+		/* Character Pages Styling */
+		
+			@media screen and (min-width: 800px) {
+				#searchbox {
+				margin: 2em 0.9em 1em 0.9em;		
+				}
+			}
+
+		/* -------------------------------- 
+
+		Main Menu components 
+
+		-------------------------------- */
+
+		#cd-nav ul {
+		  /* mobile first */
+		  border: 1px solid #777;
+		  position: fixed;
+		  width: 90%;
+		  max-width: 400px;
+		  right: 5%;
+		  bottom: 20px;
+		  border-radius: 0em;
+		  box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+		  background: #111;
+		  visibility: hidden;
+		  /* remove overflow:hidden if you want to create a drop-down menu - but then remember to fix/eliminate the list items animation */
+		  overflow: hidden;
+		  z-index: 1;
+		  /* Force Hardware Acceleration in WebKit */
+		  -webkit-backface-visibility: hidden;
+		  backface-visibility: hidden;
+		  -webkit-transform: scale(0);
+		  -moz-transform: scale(0);
+		  -ms-transform: scale(0);
+		  -o-transform: scale(0);
+		  transform: scale(0);
+		  -webkit-transform-origin: 100% 100%;
+		  -moz-transform-origin: 100% 100%;
+		  -ms-transform-origin: 100% 100%;
+		  -o-transform-origin: 100% 100%;
+		  transform-origin: 100% 100%;
+		  -webkit-transition: -webkit-transform 0.3s, visibility 0s 0.3s;
+		  -moz-transition: -moz-transform 0.3s, visibility 0s 0.3s;
+		  transition: transform 0.3s, visibility 0s 0.3s;
+		  padding: 0;
+		  list-style-type: none;
+		}
+		#cd-nav ul li {
+		  /* Force Hardware Acceleration in WebKit */
+		  -webkit-backface-visibility: hidden;
+		  backface-visibility: hidden;
+		}
+		#cd-nav ul.is-visible {
+		  visibility: visible;
+		  -webkit-transform: scale(1);
+		  -moz-transform: scale(1);
+		  -ms-transform: scale(1);
+		  -o-transform: scale(1);
+		  transform: scale(1);
+		  -webkit-transition: -webkit-transform 0.3s, visibility 0s 0s;
+		  -moz-transition: -moz-transform 0.3s, visibility 0s 0s;
+		  transition: transform 0.3s, visibility 0s 0s;
+		}
+		#cd-nav ul.is-visible li:nth-child(1) {
+		  /* list items animation */
+		  -webkit-animation: cd-slide-in 0.2s;
+		  -moz-animation: cd-slide-in 0.2s;
+		  animation: cd-slide-in 0.2s;
+		}
+		#cd-nav ul.is-visible li:nth-child(2) {
+		  -webkit-animation: cd-slide-in 0.3s;
+		  -moz-animation: cd-slide-in 0.3s;
+		  animation: cd-slide-in 0.3s;
+		}
+		#cd-nav ul.is-visible li:nth-child(3) {
+		  -webkit-animation: cd-slide-in 0.4s;
+		  -moz-animation: cd-slide-in 0.4s;
+		  animation: cd-slide-in 0.4s;
+		}
+		#cd-nav ul.is-visible li:nth-child(4) {
+		  -webkit-animation: cd-slide-in 0.5s;
+		  -moz-animation: cd-slide-in 0.5s;
+		  animation: cd-slide-in 0.5s;
+		}
+		#cd-nav ul.is-visible li:nth-child(5) {
+		  -webkit-animation: cd-slide-in 0.6s;
+		  -moz-animation: cd-slide-in 0.6s;
+		  animation: cd-slide-in 0.6s;
+		}
+
+		#cd-nav li a {
+		  display: block;
+		  padding: 2.75vh 1.6em;
+		  border-bottom: 1px solid #222;
+		}
+		#cd-nav li:last-child a {
+		  border-bottom: none;
+		}
+
+		 #cd-nav li a, #cd-nav li a:visited  {
+			color: #fcfcfc;
+			font-family: 'Poppins', sans-serif;
+			text-decoration: none;
+		}
+		#cd-nav li a:hover {
+			color: #ececec;
+			background: #777;
+		}
+		
+		.cd-nav-trigger {
+		  background: #111;
+		  border: 2px solid #fcfcfc;
+		}
+		
+		@media only screen and (min-width: 1170px) {
+			
+		#topcharbg {
+			padding: 0 0 1em 0;
+		}
+			
+		  #cd-nav ul {
+			/* the navigation moves to the top */
+			border: 0px;
+			position: relative;
+			width: auto;
+			max-width: none;
+			bottom: auto;
+			top: 0;
+			margin-top: 0;
+			background: transparent;
+			visibility: visible;
+			box-shadow: none;
+			-webkit-transform: scale(1);
+			-moz-transform: scale(1);
+			-ms-transform: scale(1);
+			-o-transform: scale(1);
+			transform: scale(1);
+			-webkit-transition: all 0s;
+			-moz-transition: all 0s;
+			transition: all 0s;
+			width: 100%;
+			padding: 1.25em;
+			right: 0;
+			text-align: center;
+			user-select: none;
+		  }
+		  #cd-nav li {
+			display: inline-block;
+		  }
+		  #cd-nav li a, #cd-nav li a:visited  {
+			opacity: 1;
+			padding: .66em;
+			margin-left: 1.6em;
+			border-bottom: none;
+			transition: 0.2s;
+		  }
+		  #cd-nav.is-fixed ul {
+			/* when the user scrolls down, the navigation moves to the bottom right in Fixed position - as on touch devices */
+			  border: 1px solid #777;
+			position: fixed;
+			width: 90%;
+			max-width: 400px;
+			bottom: 20px;
+			top: auto;
+			background: #111;
+			visibility: hidden;
+			box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+			-webkit-transform: scale(0);
+			-moz-transform: scale(0);
+			-ms-transform: scale(0);
+			-o-transform: scale(0);
+			transform: scale(0);
+			padding: 0;
+			 list-style-type: none;
+		  }
+		  #cd-nav.is-fixed ul li {
+			display: block;
+		  }
+		  #cd-nav.is-fixed ul li a {
+			padding: 1.6em;
+			margin-left: 0;
+			border-bottom: 1px solid #222;
+		  }
+		  #cd-nav ul.has-transitions {
+			/* this class is used to bring back transitions when the navigation moves at the bottom right */
+			-webkit-transition: -webkit-transform 0.3s, visibility 0s 0.3s;
+			-moz-transition: -moz-transform 0.3s, visibility 0s 0.3s;
+			transition: transform 0.3s, visibility 0s 0.3s;
+		  }
+		  #cd-nav ul.is-visible {
+			/* this class is used to bring back the navigation animation - as on touch devices */
+			visibility: visible;
+			-webkit-transform: scale(1);
+			-moz-transform: scale(1);
+			-ms-transform: scale(1);
+			-o-transform: scale(1);
+			transform: scale(1);
+			-webkit-transition: -webkit-transform 0.3s, visibility 0s 0s;
+			-moz-transition: -moz-transform 0.3s, visibility 0s 0s;
+			transition: transform 0.3s, visibility 0s 0s;
+		  }
+		  #cd-nav ul.is-hidden {
+			/* this class is used to animate the scale down the navigation when the user scrolls down with the navigation still open */
+			-webkit-transform: scale(0);
+			-moz-transform: scale(0);
+			-ms-transform: scale(0);
+			-o-transform: scale(0);
+			transform: scale(0);
+			-webkit-transition: -webkit-transform 0.3s;
+			-moz-transition: -moz-transform 0.3s;
+			transition: transform 0.3s;
+		  }
+		}
+
+		.cd-nav-trigger {
+		  position: fixed;
+		  bottom: 20px;
+		  right: 5%;
+		  width: 52px;
+		  height: 52px;
+		  background: #111;
+		  border-radius: 0em;
+		  border: 2px solid #fcfcfc;
+		  box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+		  /* image replacement */
+		  overflow: hidden;
+		  text-indent: 100%;
+		  white-space: nowrap;
+		  z-index: 2;
+		}
+		.cd-nav-trigger span {
+		  /* the span element is used to create the menu icon */
+		  position: absolute;
+		  display: block;
+		  width: 20px;
+		  height: 2px;
+		  background: #fcfcfc;
+		  top: 50%;
+		  margin-top: -1px;
+		  left: 50%;
+		  margin-left: -10px;
+		  -webkit-transition: background 0.3s;
+		  -moz-transition: background 0.3s;
+		  transition: background 0.3s;
+		}
+		.cd-nav-trigger span::before, .cd-nav-trigger span::after {
+		  content: '';
+		  position: absolute;
+		  left: 0;
+		  background: inherit;
+		  width: 100%;
+		  height: 100%;
+		  /* Force Hardware Acceleration in WebKit */
+		  -webkit-transform: translateZ(0);
+		  -moz-transform: translateZ(0);
+		  -ms-transform: translateZ(0);
+		  -o-transform: translateZ(0);
+		  transform: translateZ(0);
+		  -webkit-backface-visibility: hidden;
+		  backface-visibility: hidden;
+		  -webkit-transition: -webkit-transform 0.3s, background 0s;
+		  -moz-transition: -moz-transform 0.3s, background 0s;
+		  transition: transform 0.3s, background 0s;
+		}
+		.cd-nav-trigger span::before {
+		  top: -6px;
+		  -webkit-transform: rotate(0);
+		  -moz-transform: rotate(0);
+		  -ms-transform: rotate(0);
+		  -o-transform: rotate(0);
+		  transform: rotate(0);
+		}
+		.cd-nav-trigger span::after {
+		  bottom: -6px;
+		  -webkit-transform: rotate(0);
+		  -moz-transform: rotate(0);
+		  -ms-transform: rotate(0);
+		  -o-transform: rotate(0);
+		  transform: rotate(0);
+		}
+		.cd-nav-trigger.menu-is-open {
+		  box-shadow: none;
+		}
+		.cd-nav-trigger.menu-is-open span {
+		  background: rgba(250, 250, 250, 0);
+		}
+		.cd-nav-trigger.menu-is-open span::before, .cd-nav-trigger.menu-is-open span::after {
+		  background: #fcfcfc;
+		}
+		.cd-nav-trigger.menu-is-open span::before {
+		  top: 0;
+		  -webkit-transform: rotate(135deg);
+		  -moz-transform: rotate(135deg);
+		  -ms-transform: rotate(135deg);
+		  -o-transform: rotate(135deg);
+		  transform: rotate(135deg);
+		}
+		.cd-nav-trigger.menu-is-open span::after {
+		  bottom: 0;
+		  -webkit-transform: rotate(225deg);
+		  -moz-transform: rotate(225deg);
+		  -ms-transform: rotate(225deg);
+		  -o-transform: rotate(225deg);
+		  transform: rotate(225deg);
+		}
+		@media only screen and (min-width: 1170px) {
+		  .cd-nav-trigger {
+			/* the the menu triger is hidden by default on desktop devices */
+			visibility: hidden;
+			-webkit-transform: scale(0);
+			-moz-transform: scale(0);
+			-ms-transform: scale(0);
+			-o-transform: scale(0);
+			transform: scale(0);
+			-webkit-transition: -webkit-transform 0.3s, visibility 0s 0.3s;
+			-moz-transition: -moz-transform 0.3s, visibility 0s 0.3s;
+			transition: transform 0.3s, visibility 0s 0.3s;
+		  }
+		  .is-fixed .cd-nav-trigger {
+			visibility: visible;
+			-webkit-transition: all 0s;
+			-moz-transition: all 0s;
+			transition: all 0s;
+			-webkit-transform: scale(1);
+			-moz-transform: scale(1);
+			-ms-transform: scale(1);
+			-o-transform: scale(1);
+			transform: scale(1);
+			-webkit-animation: cd-bounce-in 0.3s linear;
+			-moz-animation: cd-bounce-in 0.3s linear;
+			animation: cd-bounce-in 0.3s linear;
+			right: 1%;
+		  }
+		}
+
+		#cd-gallery-items li {
+		  margin-bottom: 1.5em;
+		  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+		  border-radius: 0em;
+		}
+		#cd-gallery-items li img {
+		  width: 100%;
+		  display: block;
+		  border-radius: 0em;
+		}
+
+
+}
+/* END Dark Mode Conditionals */
