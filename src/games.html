@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Project Frame</title>
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script src=https://unpkg.com/@babel/standalone/babel.min.js></script>
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        
+        <div class="header">
+            Project Frame
+        </div>
+        <div id="root">  
+        </div>
+        
+        
+        <script type="text/babel">
+
+          class Game extends React.Component {
+              render () {
+                return (
+                  <div class="gameTag" id={this.props.game}>
+                    <h1><a href={this.props.game}>{this.props.game}</a></h1>
+                  </div>
+                );
+              }
+            }
+
+
+            class GamesList extends React.Component {
+              renderGame(i) {
+                return <Game game={i}/>;
+              }
+              render() {
+                return (
+                  <div class="Games">
+                    {this.renderGame('Ultimate')}
+                    {this.renderGame('Tekken')}
+                    {this.renderGame('Melee')}
+                    {this.renderGame('DBZ')}
+                  </div>
+                  
+                );
+              }
+            }
+
+
+            ReactDOM.render(
+                <GamesList />,
+                document.getElementById('root')
+            );
+
+        </script>
+        
+    </body>
+</html>
