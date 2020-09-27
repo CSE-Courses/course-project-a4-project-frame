@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Form from './Forms/Form';
+import ReportForm from '../Forms/ReportForm';
 import { ModalButtonHeightSet, ModalButtonClick, OutsideModal, ModalCloseX } from './ModalScripts.js'
 
 
@@ -15,7 +15,9 @@ export default class FormModal extends Component {
               <line x1="20" x2="80" y1="80" y2="20" strokeWidth="20" strokeLinecap="round"></line>
             </svg>
           </div>
-          <Form />
+          <div>
+            <ReportForm />
+          </div>
         </div>
       </div>
     );
