@@ -1,12 +1,12 @@
 import React from 'react';
-import CharacterPage from './CharacterPage';
+import GamesPage from './MyRouter';
 import {BrowserRouter as Router} from 'react-router-dom';
 
 
 function App() {
   return (
     <Router>
-      <CharacterPage />
+      <GamesPage />
     </Router>
   )
 }
