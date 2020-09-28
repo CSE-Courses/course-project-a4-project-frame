@@ -15,10 +15,10 @@ export default class Modal extends Component {
   
    render() {
       return (
-      <div>
-         <ModalForm />
-         <ModalButton />
-      </div>
-   );
+         <div>
+            <ModalButton />
+            <ModalForm page={this.props.page}/>
+         </div>
+      );
    }
 }

@@ -32,7 +32,7 @@ export default class ReportForm extends React.Component {
        <h1>Report Form</h1>
       <div className="container">
         <div className="row">
-          <div classname="col-25">
+          <div className="col-25">
             <label>Error: </label>
           </div>
           <div className="col-85">

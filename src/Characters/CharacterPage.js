@@ -20,7 +20,7 @@ export default class Characters extends Component {
                 <div id="Characters">  
                     {this.getCharacters()}
                 </div>
-                <Modal />
+                <Modal page="characters"/>
             </div>
         );
     }

@@ -21,7 +21,7 @@ export default class Attacks extends Component {
                 <div className="Attacks">       
                     {this.getAttacks()}
                 </div>
-                <Modal /> 
+                <Modal page="attacks" /> 
             </div>
         );
     }

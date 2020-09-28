@@ -18,7 +18,7 @@ export default class Games extends Component {
                 <div className="Games">       
                     {this.getGames()}
                 </div>
-                <Modal /> 
+                <Modal page="games"/> 
             </div>
         );
     }
