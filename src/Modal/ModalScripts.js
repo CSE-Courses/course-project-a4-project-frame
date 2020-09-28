@@ -1,6 +1,5 @@
 
 export function ModalButtonHeightSet() {
-    console.log('here');
     document.getElementById('ModalButton').style.height = document.getElementById('ModalButton').offsetWidth+'px';
 }
 
