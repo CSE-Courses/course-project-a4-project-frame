@@ -1,0 +1,37 @@
+.Attacks {
+    display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding: 50px;
+	height: 100%;
+	background-color: white;
+}
+
+#attack table, tbody, th, td {
+    border: 2px solid black;
+}
+
+#attack {
+    border-collapse: collapse;
+}
+
+.attackTag{
+    width:25%;
+    margin:0;
+}
+
+.name {
+    background-color: orange;
+}
+
+.start {
+    background-color: aquamarine;
+}
+
+.shield {
+    background-color: orangered;
+}
+
+.active {
+    background-color: palevioletred;
+}
