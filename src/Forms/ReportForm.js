@@ -30,7 +30,6 @@ export default class ReportForm extends React.Component {
      <form onSubmit={this.handleSubmit}>
        <br/>
        <h1>Report Form</h1>
-       <br/>
       <div className="container">
         <div className="row">
           <div className="col-25">
