@@ -1,0 +1,95 @@
+.svg-plus line{
+    stroke: rgba(169,169,169,1);
+  }
+  
+  .svg-cross line{
+    stroke: rgba(169,169,169,1);
+    ;
+  }
+  
+  #ModalButton {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 10%;
+    border-radius: 3vw;
+    max-width: 100px;
+    background-color: rgba(211,211,211,0.5);
+  }
+  
+  #ModalButton :hover {
+    border-radius: 3vw;
+    background-color: rgba(211,211,211,1);
+  }
+  
+  #EditFormModal {
+    visibility: hidden;
+    display: flex;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(169,169,169,0.5);
+  }
+  
+  #ModalForm {
+    padding: 10px;
+    background-color: white;
+    width: 80%;
+    height: 80%;
+    border-radius: 2%;
+    overflow:auto;
+  }
+
+  #form {
+    overflow:auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  #ModalClose {
+    font-size: 0;
+    position: fixed;
+    background-color: white;
+    border-radius: 10%;
+    right: 1vw;
+    top: 1vw;
+    width: 5%;
+    max-width: 50px;
+  }
+  
+  #ModalClose :hover {
+    background-color: rgba(211,211,211,0.5);
+    border-radius: 20%;
+  }
+  
+  .center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  #forms{
+    text-align: center;
+  }
+
+  .form h1{
+    display: inline;
+  }
+
+  .form {
+    margin: 1em;
+    padding: 1em;
+    padding-bottom:0.5em;
+    display: inline;
+  }
+
+  #submissionButton {
+    background-color: lightgrey;
+  }
+  
+  #reportButton {
+    background-color: lightgrey;
+  }
