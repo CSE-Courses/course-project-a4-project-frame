@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import './CharacterPage.css'
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import Character from './Character'
 import Modal from '../Modal/Modal'
