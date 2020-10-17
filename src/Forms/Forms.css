@@ -19,7 +19,7 @@
   
   textarea {
     float: left;
-    width: 75%;
+    width: 90%;
     height: 100px;
     padding: 12px;
     border: 1px solid #ccc;
@@ -51,10 +51,11 @@
   }
   
   .container {
-    width: 70%;
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
   }
   
   .col-25 {
@@ -65,7 +66,7 @@
   
   .col-85 {
     float: left;
-    width: 85%;
+    width: 90%;
     margin-top: 6px;
   }
   
@@ -79,4 +80,12 @@
     content: "";
     display: table;
     clear: both;
+  }
+
+  @media screen and (max-width: 1300px) {
+    .container, .col-25, .col-75, .select-button, textarea, input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+      margin-left: 0;
+    }
   }
