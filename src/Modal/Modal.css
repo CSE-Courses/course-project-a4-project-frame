@@ -36,8 +36,8 @@
   #ModalForm {
     padding: 10px;
     background-color: white;
-    width: 80%;
-    height: 80%;
+    width: 800px;
+    height: 700px;
     border-radius: 2%;
     overflow:auto;
   }

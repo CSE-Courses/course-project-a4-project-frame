@@ -4,7 +4,7 @@
     background-color: white;
     margin-top: 5%;
     margin-left: 3.2%;
-    margin-right: 3.2%;
+    margin-right: 2.8%;
     padding-left: 5%;
     padding-right: 5%;
     padding-top: 3%;
@@ -22,8 +22,4 @@
     text-align: center;
     color: black;
     font-family: Impact, fantasy;
-}
-
-h1 {
-    text-align: center;
 }
