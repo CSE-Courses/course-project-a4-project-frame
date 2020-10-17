@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReportForm from '../Forms/ReportForm';
 import CharacterSubmissionForm from '../Forms/CharacterSubmissionForm'
+import GameSubmissionForm from '../Forms/GameSubmissionForm'
+import AttackSubmissionForm from '../Forms/AttackSubmissionForm'
 import { ModalButtonHeightSet, ModalButtonClick, OutsideModal, ModalCloseX } from './ModalScripts.js'
 
 
@@ -51,6 +53,10 @@ export default class ModalForm extends Component {
             (<ReportForm />) :
             form == "submission" && this.props.page == "characters" ?
             (<CharacterSubmissionForm />):
+            form == "submission" && this.props.page == "games" ?
+            (<GameSubmissionForm />):
+            form == "submission" && this.props.page == "attacks" ?
+            (<AttackSubmissionForm />):
             null
             }
           </div>

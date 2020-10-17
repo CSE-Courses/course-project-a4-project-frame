@@ -1,3 +1,4 @@
+//renders the report form
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './ReportForm.css';

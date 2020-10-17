@@ -1,3 +1,4 @@
+//renders the character creation form
 import React from 'react';
 
 export default function CharacterSubmissionForm() {
