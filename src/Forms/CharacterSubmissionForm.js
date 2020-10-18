@@ -30,7 +30,8 @@ class CharacterForm extends React.Component {
 	
 	render() {
 		return (
-			<form onSubmit={this.mySubmitHandler}>
+			<form method="POST" action="http://localhost:8080/submission-character">
+				<br/>
 				<h1>Submission form</h1>
 				<div className="container">
 					<div className="row">
