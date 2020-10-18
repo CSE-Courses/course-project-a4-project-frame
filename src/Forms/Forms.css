@@ -24,19 +24,20 @@ label {
 }
 
 input[type=submit] {
-  width: 160px;
-  background-color: #143ef7;
+  width: 180px;
+  background-color: #ea5455;
   color: white;
   padding: 12px 20px;
   border: none;
   border-radius: 0px;
   cursor: pointer;
   display: block;
+  border-radius: 5px;
   margin: 0 auto;
 }
 
 input[type=submit]:hover {
-  background-color: #1621bd;
+  background-color: #ffb5b5;
 }
 
 .container {
