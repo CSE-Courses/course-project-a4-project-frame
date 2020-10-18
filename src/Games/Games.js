@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import Game from './Game';
 import Modal from '../Modal/Modal';
 import '../Modal/ModalScripts.js';
-import "../../serverIP";
+import serverIP from '../serverIP';
 
 
 export default class Games extends Component {
@@ -17,7 +17,7 @@ export default class Games extends Component {
         };
       }
     componentDidMount() {
-        fetch("http://" + serverIP + "/get/games") // Calls server for characters to fill the tiles currently set for development server
+        fetch("http://" + serverIP["serverIP"] + "/get/games") // Calls server for characters to fill the tiles currently set for development server
           .then(res => res.json())
           .then(
             (result) => {

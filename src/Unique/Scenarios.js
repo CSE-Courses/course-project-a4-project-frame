@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import Scenario from './Scenario.js';
 import Modal from '../Modal/Modal';
-import './Scenarios.css'
-import '../../serverIP'
+import './Scenarios.css';
+import serverIP from '../serverIP';
 
 
 export default class Scenarios extends Component {
@@ -26,7 +26,7 @@ export default class Scenarios extends Component {
         return sceanariosList;
     }
     componentDidMount() {
-        fetch("http://" + serverIP + "/get/" + this.props.game + "/" + this.props.character +"/scenarios") // Calls server for characters to fill the tiles currently set for development server
+        fetch("http://" + serverIP["serverIP"] + "/get/" + this.props.game + "/" + this.props.character +"/scenarios") // Calls server for characters to fill the tiles currently set for development server
           .then(res => res.json())
           .then(
             (result) => {

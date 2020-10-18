@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import Attack from './Attack';
 import Modal from '../Modal/Modal';
 import './Attacks.css'
-import '../../severIP'
+import serverIP from '../serverIP';
 
 
 export default class Attacks extends Component {
@@ -26,7 +26,7 @@ export default class Attacks extends Component {
         return attacksList;
     }
     componentDidMount() {
-        fetch("http://" + serverIP + "/get/" + this.props.game + "/" + this.props.character +"/attacks") // Calls server for characters to fill the tiles currently set for development server
+        fetch("http://" + serverIP["serverIP"] + "/get/" + this.props.game + "/" + this.props.character +"/attacks") // Calls server for characters to fill the tiles currently set for development server
           .then(res => res.json())
           .then(
             (result) => {

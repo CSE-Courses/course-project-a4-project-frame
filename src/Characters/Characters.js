@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import Character from './Character'
 import Modal from '../Modal/Modal'
-import '../../serverIP'
+import serverIP from '../serverIP';
 
 export default class Characters extends Component {
     constructor(props) {
@@ -23,7 +23,7 @@ export default class Characters extends Component {
         return charactersList;
     }
     componentDidMount() {
-        fetch("http://" + serverIP + "/get/" + this.props.game + "/characters") // Calls server for characters to fill the tiles currently set for development server
+        fetch("http://" + serverIP["serverIP"] + "/get/" + this.props.game + "/characters") // Calls server for characters to fill the tiles currently set for development server
           .then(res => res.json())
           .then(
             (result) => {
