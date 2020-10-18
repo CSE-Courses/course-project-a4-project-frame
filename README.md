@@ -3,9 +3,10 @@ course-project-a4-project-frame created by GitHub Classroom
 
 To setup App,
 1) Clone Repo
-2) From repo location, run 'npm install react-router-dom'
-3) From repo location, run 'npm install react-scripts'
-4) From repo location, run 'npm start' to ensure app works
+2) From repo location, run 'npm install'
+3) From repo location, run 'npm run build'
+4) From server folder, run 'node server'
+5) Access in browser at localhost:8080
 
 To Run Tests,
 1) Install SeleniumIDE from chrome extensions

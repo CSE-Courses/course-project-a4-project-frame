@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
-import './Games.css'
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
-import Game from './Game';
+import Scenario from './Scenario.js';
 import Modal from '../Modal/Modal';
-import '../Modal/ModalScripts.js';
+import './Scenarios.css';
 import serverIP from '../serverIP';
 
 
-export default class Games extends Component {
+export default class Scenarios extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -15,9 +14,19 @@ export default class Games extends Component {
           isLoaded: false,
           items: [] //Will be used to store all characters for the game
         };
-      }
+    }
+    getScenarios() {
+        var scenarios = this.state.items;
+        const sceanariosList = scenarios.map((scenario) => <Scenario
+            game={this.props.match.params.game} 
+            character={this.props.match.params.character} 
+            key = {scenario}
+            scenario={scenario}
+        />);
+        return sceanariosList;
+    }
     componentDidMount() {
-        fetch("http://" + serverIP["serverIP"] + "/get/games") // Calls server for characters to fill the tiles currently set for development server
+        fetch("http://" + serverIP["serverIP"] + "/get/" + this.props.game + "/" + this.props.character +"/scenarios") // Calls server for characters to fill the tiles currently set for development server
           .then(res => res.json())
           .then(
             (result) => {
@@ -35,20 +44,15 @@ export default class Games extends Component {
                 error
               });
             }
-        )
-    }
-      getGames() {
-        var games = this.state.items;
-        const gamesList = games.map((game) => <Game key={game} game={game} />);
-        return gamesList;
-    }
+          )
+      }
     render () {
         return (
             <div>
-                <div className="Games">       
-                    {this.getGames()}
+                <div className="Scenarios">       
+                    {this.getScenarios()}
                 </div>
-                <Modal page="games"/> 
+                <Modal page="scenarios"/> 
             </div>
         );
     }
