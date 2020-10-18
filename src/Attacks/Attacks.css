@@ -15,8 +15,12 @@
 }
 
 .attackTag{
+    /*
     width:25%;
     margin:0;
+    */
+    margin-left: 55px;
+    margin-right: 55px;
 }
 
 .name {

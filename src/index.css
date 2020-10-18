@@ -6,19 +6,15 @@
 
 header {
   font-family: Impact, fantasy;
-  background-color: #e0ecff;
+  color:black;
+  background-color: #ea5455;
   border: black;
   border-width: 10px;
   size: 25px;
   text-align: center;
-  font-size: 250%;
+  font-size: 300%;
   padding-top: 40px;
   padding-bottom: 40px;
-  border: 5px solid black;
-  border-radius: 20px;
-  margin-top: 50px;
-  margin-left: 12%;
-  margin-right: 12%;
 }
 
 body {
@@ -38,4 +34,8 @@ code {
 
 h1 {
   text-align: center;
+}
+
+a:link{
+  text-decoration:none; 
 }
