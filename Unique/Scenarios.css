@@ -1,0 +1,29 @@
+.Scenarios {
+    display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding: 50px;
+	height: 100%;
+	background-color: white;
+}
+
+#scenario table, tbody, th, td {
+    border: 2px solid black;
+}
+
+#scenario{
+    border-collapse: collapse;
+}
+
+.ScenarioTag{
+    width:25%;
+    margin:0;
+}
+
+.name {
+    background-color: orange;
+}
+
+.description {
+    background-color: aquamarine;
+}
