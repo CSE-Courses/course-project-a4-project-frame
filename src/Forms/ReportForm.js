@@ -27,9 +27,8 @@ export default class ReportForm extends React.Component {
 
   render() {
     return (
-     <form onSubmit={this.handleSubmit}>
-       <br/>
-       <h1>Report Form</h1>
+      <form onSubmit={this.handleSubmit}>
+      <h1>Report Form</h1>
       <div className="container">
         <div className="row">
           <div className="col-25">
@@ -86,7 +85,7 @@ export default class ReportForm extends React.Component {
           </div>
 
       </div>
-     </form>
+      </form>
     );
   }
 }

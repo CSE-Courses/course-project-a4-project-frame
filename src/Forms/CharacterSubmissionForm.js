@@ -31,7 +31,6 @@ class CharacterForm extends React.Component {
 	render() {
 		return (
 			<form onSubmit={this.mySubmitHandler}>
-				<br/>
 				<h1>Submission form</h1>
 				<div className="container">
 					<div className="row">
