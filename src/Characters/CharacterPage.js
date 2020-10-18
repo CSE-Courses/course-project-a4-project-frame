@@ -16,7 +16,7 @@ export default class Characters extends Component {
     render () {
         return (
             <div>
-                <div className="Characters">  
+                <div id="Characters">  
                     {this.getCharacters()}
                 </div>
                 <Modal page="characters"/>
