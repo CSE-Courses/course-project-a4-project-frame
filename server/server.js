@@ -74,7 +74,7 @@ app.post('/submission-:type', function (req,res) {
     else{
       db["games"].push(submission);
     db[submission] = {'characters': []};
-    res.redirect('http://localhost:3000/');
+    res.redirect('http://localhost:8080/');
     }
   }
 
@@ -87,7 +87,7 @@ app.post('/submission-:type', function (req,res) {
     else{
       db[game]["characters"].push(submission);
     db[game][submission] = {'attacks': []};
-    res.redirect('http://localhost:3000/' + game);
+    res.redirect('http://localhost:8080/' + game);
     }
   }
 
@@ -101,7 +101,7 @@ app.post('/submission-:type', function (req,res) {
       db[game][character]["attacks"].push(submission);
     //create and add relevant data for attack
     dg[game][character][submission] = {'data':[]};
-    res.redirect('http://localhost:3000/' + game + '/' + character);
+    res.redirect('http://localhost:8080/' + game + '/' + character);
     }
   }
 
