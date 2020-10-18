@@ -9,12 +9,26 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var characters = ["Bowser", "BowserJr", "DrMario", "DuckHunt", "KingDedede"];
 var db = {
   "games": ["Ultimate", "Tekken", "DBZ"],
-  "characters": {
-    "Ultimate": ["Bowser", "BowserJr", "DrMario", "DuckHunt", "KingDedede"],
-    "Tekken": ["Bowser", "BowserJr", "DrMario", "DuckHunt", "KingDedede"],
-    "DBZ": ["Bowser", "BowserJr", "DrMario", "DuckHunt", "KingDedede"]
+  "Ultimate": {
+    'characters': ["Bowser", "BowserJr", "DrMario", "DuckHunt", "KingDedede"],
+    'Bowser': {
+      'attacks': ["side b", "jab"],
+    },
+    "BowserJr": {
+
+    },
+    "DrMario" : {},
+    "DuckHunt": {},
+    "KingDedede": {},
   },
-  "attacks": ["side b", "jab"]
+  'Tekken': {
+    'characters': [],
+
+  },
+  'DBZ': {
+    'characters': [],
+
+  },
 }; 
 
 app.get('/', function (req, res) {
@@ -30,12 +44,15 @@ app.get('/get/games', function(req,res){
 
 app.get('/get/:game/characters', function(req,res){
   console.log('getting characters');
-  res.json(db["characters"]["Ultimate"]);
+  var game = req.params["game"];
+  res.json(db[game]['characters']);
 });
 
 app.get('/get/:game/:character/attacks', function(req,res){
   console.log('getting attacks');
-  res.json(db["attacks"]);
+  var game = req.params["game"];
+  var character = req.params["character"];
+  res.json(db[game][character]["attacks"]);
 })
 
 
@@ -49,19 +66,24 @@ app.post('/submission-:type', function (req,res) {
   console.log('Got body:', req.body);
   var type = req.params["type"]
   var submission = req.body[type];
+
   if(type == "game"){
     if(submission in db["games"]){
       res.redirect('back');
     }
     db["games"].push(submission);
+    db[game] = {'characters': []};
   }
+
   if(type == "character"){
     var game = req.body["game"];
     if(submission in db[game]["characters"]){
       res.redirect('back');
     }
     db[game]["characters"].push(submission);
+    db[game][submission] = {'attacks': []};
   }
+
   if(type == "attack"){
     var game = req.body["game"];
     var character = req.body["character"];
@@ -70,7 +92,10 @@ app.post('/submission-:type', function (req,res) {
     }
     db[game][character]["attacks"].push(submission);
     //create and add relevant data for attack
+    dg[game][character][attack] = {'data':[]};
   }
+
+  //Needs to be completed
   if(type == "scenario"){
     if(submission in db["games"]){
       res.redirect('back');
@@ -79,14 +104,6 @@ app.post('/submission-:type', function (req,res) {
   }
 
 
-  var body = req.body;
-  var character = body[type];
-  console.log(character);
-  db["characters"]["Ultimate"].push(req.body[type]);
-  console.log("change made:", db["characters"]["Ultimate"]);
-
-
-  res.redirect('back');
 });
 
 

@@ -23,7 +23,8 @@ export default class Characters extends Component {
         return charactersList;
     }
     componentDidMount() {
-        fetch("http://" + serverIP["serverIP"] + "/get/" + this.props.game + "/characters") // Calls server for characters to fill the tiles currently set for development server
+      console.log(this.props)
+        fetch("http://" + serverIP["serverIP"] + "/get/" + this.props.match.params.game + "/characters") // Calls server for characters to fill the tiles currently set for development server
           .then(res => res.json())
           .then(
             (result) => {
