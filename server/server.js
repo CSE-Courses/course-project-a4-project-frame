@@ -63,7 +63,7 @@ app.get('/*', function (req, res) {
 
 //Handles Form submissions for adding to the website
 app.post('/submission-:type', function (req,res) {
-  console.log('Got body:', req.body);
+  //console.log('Got body:', req.body);
   var type = req.params["type"]
   var submission = req.body[type];
 
@@ -71,17 +71,24 @@ app.post('/submission-:type', function (req,res) {
     if(submission in db["games"]){
       res.redirect('back');
     }
-    db["games"].push(submission);
-    db[game] = {'characters': []};
+    else{
+      db["games"].push(submission);
+    db[submission] = {'characters': []};
+    res.redirect('http://localhost:3000/');
+    }
   }
 
   if(type == "character"){
     var game = req.body["game"];
-    if(submission in db[game]["characters"]){
+    console.log(db[game]["characters"])
+    if(submission in db[game]){
       res.redirect('back');
     }
-    db[game]["characters"].push(submission);
+    else{
+      db[game]["characters"].push(submission);
     db[game][submission] = {'attacks': []};
+    res.redirect('http://localhost:3000/' + game);
+    }
   }
 
   if(type == "attack"){
@@ -90,9 +97,12 @@ app.post('/submission-:type', function (req,res) {
     if(submission in db[game][character]["attacks"]){
       res.redirect('back');
     }
-    db[game][character]["attacks"].push(submission);
+    else{
+      db[game][character]["attacks"].push(submission);
     //create and add relevant data for attack
-    dg[game][character][attack] = {'data':[]};
+    dg[game][character][submission] = {'data':[]};
+    res.redirect('http://localhost:3000/' + game + '/' + character);
+    }
   }
 
   //Needs to be completed
@@ -102,7 +112,7 @@ app.post('/submission-:type', function (req,res) {
     }
     db["games"].push(submission);
   }
-
+  
 
 });
 
