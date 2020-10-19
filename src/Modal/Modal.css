@@ -1,9 +1,9 @@
 .svg-plus line{
-    stroke: rgba(169,169,169,1);
+    stroke: /*rgba(169,169,169,1)*/#2d4059;
   }
   
   .svg-cross line{
-    stroke: rgba(169,169,169,1);
+    stroke: /*rgba(169,169,169,1)*/#2d4059;
     ;
   }
   
@@ -17,7 +17,7 @@
     background-color: rgba(211,211,211,0.5);
   }
   
-  #ModalButton :hover {
+  #ModalButton:hover {
     border-radius: 3vw;
     background-color: rgba(211,211,211,1);
   }
@@ -36,8 +36,8 @@
   #ModalForm {
     padding: 10px;
     background-color: white;
-    width: 80%;
-    height: 80%;
+    width: 820px;
+    height: 725px;
     border-radius: 2%;
     overflow:auto;
   }
@@ -59,7 +59,7 @@
     max-width: 50px;
   }
   
-  #ModalClose :hover {
+  #ModalClose:hover {
     background-color: rgba(211,211,211,0.5);
     border-radius: 20%;
   }
@@ -88,6 +88,10 @@
 
   #submissionButton {
     background-color: lightgrey;
+  }
+
+  #submissionButton:hover {
+    background-color: grey;
   }
   
   #reportButton {

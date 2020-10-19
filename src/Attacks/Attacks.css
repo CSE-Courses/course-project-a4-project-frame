@@ -4,7 +4,6 @@
 	justify-content: center;
 	padding: 50px;
 	height: 100%;
-	background-color: white;
 }
 
 #attack table, tbody, th, td {
@@ -16,8 +15,12 @@
 }
 
 .attackTag{
+    /*
     width:25%;
     margin:0;
+    */
+    margin-left: 55px;
+    margin-right: 55px;
 }
 
 .name {
