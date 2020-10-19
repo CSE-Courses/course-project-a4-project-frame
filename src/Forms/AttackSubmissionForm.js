@@ -1,10 +1,14 @@
 //renders the attack submission form
 import React from 'react';
+import { useLocation } from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
+import serverIP from '../serverIP';
 
 export default function CharacterSubmissionForm() {
+    const location = useLocation();
     return (
         <div>
-            <SubmissionForm />
+            <SubmissionForm location={location.pathname}/>
         </div>
     )
 }
@@ -33,9 +37,11 @@ class SubmissionForm extends React.Component {
     this.setState({[nam]: val});
     }
     
+    //action={'http://' + serverIP["serverIP"] + "/submission-attack" + this.props.location}>
     render() {
+    console.log(this.props);
     return (
-      <form onSubmit={this.mySubmitHandler}>
+      <form method="POST" action={'http://' + serverIP["serverIP"]  + '/submission' + this.props.location + "/attack"} >
 	    <br/>
         <h1>Submission form</h1>
         <br/>

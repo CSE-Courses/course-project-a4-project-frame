@@ -15,11 +15,11 @@ var db = {
       'attacks': ["side b", "jab"],
     },
     "BowserJr": {
-
+      'attacks': [],
     },
-    "DrMario" : {},
-    "DuckHunt": {},
-    "KingDedede": {},
+    "DrMario" : {'attacks': [],},
+    "DuckHunt": {'attacks': [],},
+    "KingDedede": {'attacks': [],},
   },
   'Tekken': {
     'characters': [],
@@ -62,9 +62,14 @@ app.get('/*', function (req, res) {
 });
 
 //Handles Form submissions for adding to the website
+/*
 app.post('/submission-:type', function (req,res) {
-  //console.log('Got body:', req.body);
+  console.log('Got body:', req.body);
+  console.log(req.params);
   var type = req.params["type"]
+  let game = req.query.game;
+  console.log(game);
+  let character = req.query.character;
   var submission = req.body[type];
 
   if(type == "game"){
@@ -72,14 +77,13 @@ app.post('/submission-:type', function (req,res) {
       res.redirect('back');
     }
     else{
-      db["games"].push(submission);
+    db["games"].push(submission);
     db[submission] = {'characters': []};
     res.redirect('http://localhost:3000/');
     }
   }
 
   if(type == "character"){
-    var game = req.body["game"];
     console.log(db[game]["characters"])
     if(submission in db[game]){
       res.redirect('back');
@@ -114,8 +118,52 @@ app.post('/submission-:type', function (req,res) {
   }
   
 
+});*/
+
+app.post('/submission-game', function (req,res) {
+  console.log('Got body:', req.body);
+  console.log(req.params);
+  var submission = req.body["game"];
+  if(submission in db["games"]){
+    res.redirect('back');
+  }
+  else{
+    db["games"].push(submission);
+    db[submission] = {'characters': []};
+    res.redirect('http://localhost:8080/');
+  }
 });
 
+app.post('/:game/submission-character', function (req,res) {
+  console.log('Got body:', req.body);
+  console.log(req.params);
+  var game = req.params["game"];
+  var submission = req.body["character"];
+  if(submission in db[game]){
+    res.redirect('back');
+  }
+  else{
+    db[game]["characters"].push(submission);
+    db[game][submission] = {'attacks': []};
+    res.redirect('http://localhost:8080/' + game);
+  }
+});
+
+app.post('/submission/:game/:character/attack', function (req,res) {
+  console.log('Got body:', req.body);
+  console.log(req.params);
+  var game = req.params["game"];
+  var character = req.params["character"];
+  var submission = req.body["move"];
+  if(submission in db[game][character]){
+    res.redirect('back');
+  }
+  else{
+    db[game][character]["attacks"].push(submission);
+    db[game][character][submission] = {};
+    res.redirect('http://localhost:8080/' + game + '/' + character);
+  }
+});
 
 
 app.listen(process.env.PORT || 8080);

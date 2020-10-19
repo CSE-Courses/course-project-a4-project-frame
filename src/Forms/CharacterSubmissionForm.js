@@ -1,7 +1,18 @@
 //renders the character creation form
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { useLocation } from 'react-router-dom';
 import './Forms.css';
+import serverIP from '../serverIP';
+
+export default function CharacterSubmissionForm() {
+    const location = useLocation();
+    return (
+        <div>
+            <CharacterForm location={location.pathname}/>
+        </div>
+    )
+}
 
 class CharacterForm extends React.Component {
 
@@ -31,7 +42,7 @@ class CharacterForm extends React.Component {
 	
 	render() {
 		return (
-			<form method="POST" action="http://localhost:8080/submission-character">
+			<form method="POST" action={"http://localhost:8080"+ this.props.location +"/submission-character"}>
 				<br/>
 				<h1>Submission form</h1>
 				<div className="container">
@@ -132,5 +143,3 @@ class CharacterForm extends React.Component {
 		);
 	}
 }
-
-export default CharacterForm;

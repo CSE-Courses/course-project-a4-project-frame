@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './ReportForm.css';
+import './Forms.css';
+import serverIP from '../serverIP';
 
 export default class ReportForm extends React.Component {
 
@@ -25,9 +26,9 @@ export default class ReportForm extends React.Component {
 
   render() {
     return (
-     <form onSubmit={this.handleSubmit}>
+     <form method="POST" action={"http://" + serverIP['serverIP'] + "/submission-game"}>
        <br/>
-       <h1>Report Form</h1>
+       <h1>Submission Form</h1>
       <div className="container">
         <div className="row">
           <div className="col-25">
@@ -46,7 +47,7 @@ export default class ReportForm extends React.Component {
               <label>Upload Image for Game: </label>
             </div>
             <div className="select-button">
-           `` <input
+           <input
                 type='file'
                 name='image'
                 accept=".jpg,.jpeg,.png,.bmp"
@@ -54,6 +55,9 @@ export default class ReportForm extends React.Component {
             />
           </div>
           </div>
+          <div className="row">
+						<input type='submit' />
+					</div>
       </div>
      </form>
     );
