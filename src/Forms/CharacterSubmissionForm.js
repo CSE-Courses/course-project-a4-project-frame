@@ -42,7 +42,7 @@ class CharacterForm extends React.Component {
 	
 	render() {
 		return (
-			<form method="POST" action={"http://localhost:8080"+ this.props.location +"/submission-character"}>
+			<form method="POST" action={'http://' + serverIP["serverIP"]  + '/submission-character'}>
 				<br/>
 				<h1>Submission form</h1>
 				<div className="container">
