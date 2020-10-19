@@ -1,40 +1,29 @@
-.Attacks {
+.Scenarios {
     display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 	padding: 50px;
 	height: 100%;
+	background-color: white;
 }
 
-#attack table, tbody, th, td {
+#scenario table, tbody, th, td {
     border: 2px solid black;
 }
 
-#attack {
+#scenario{
     border-collapse: collapse;
 }
 
-.attackTag{
-    /*
+.ScenarioTag{
     width:25%;
     margin:0;
-    */
-    margin-left: 55px;
-    margin-right: 55px;
 }
 
 .name {
     background-color: orange;
 }
 
-.start {
+.description {
     background-color: aquamarine;
-}
-
-.shield {
-    background-color: orangered;
-}
-
-.active {
-    background-color: palevioletred;
 }

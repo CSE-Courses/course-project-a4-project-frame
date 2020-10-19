@@ -3,8 +3,8 @@
     border-radius: 10%;
     background-color: white;
     margin-top: 5%;
-    margin-left: 3.2%;
-    margin-right: 3.2%;
+    margin-left: 55px;
+    margin-right: 55px;
     padding-left: 5%;
     padding-right: 5%;
     padding-top: 3%;
@@ -17,13 +17,19 @@
     background-color: #ffb5b5;
 }
 
+#Characters {
+    /*
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    */
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
 .characterName{
     display: block;
     text-align: center;
     color: black;
     font-family: Impact, fantasy;
-}
-
-h1 {
-    text-align: center;
 }

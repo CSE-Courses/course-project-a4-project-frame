@@ -1,6 +1,7 @@
+//renders the report form
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './ReportForm.css';
+import './Forms.css';
 
 export default class ReportForm extends React.Component {
 
@@ -44,7 +45,7 @@ export default class ReportForm extends React.Component {
           </div> 
         </div>
           <div className="row">
-            <div classname="col-25">
+            <div className="col-25">
               <label>Page found on: </label>
             </div>
             <div className="col-85">
@@ -56,7 +57,7 @@ export default class ReportForm extends React.Component {
             </div>
           </div>
           <div className="row">
-            <div classname="col-25">
+            <div className="col-25">
               <label>Details of the error: </label>
             </div>
               <div className="col-85">
@@ -68,7 +69,7 @@ export default class ReportForm extends React.Component {
               </div>
             </div>
             <div className="row">
-              <div classname="col-25">
+              <div className="col-25">
                 <label>Correction: </label>
               </div>
               <div className="col-85">

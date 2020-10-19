@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
-import './Games.css'
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
-import Game from './Game';
-import Modal from '../Modal/Modal';
-import '../Modal/ModalScripts.js';
+import Character from './Character'
+import Modal from '../Modal/Modal'
 import serverIP from '../serverIP';
 
-
-export default class Games extends Component {
+export default class Characters extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -16,8 +13,18 @@ export default class Games extends Component {
           items: [] //Will be used to store all characters for the game
         };
       }
+    getCharacters() {
+        const characters = this.state.items;
+        const charactersList = characters.map((character) => <Character 
+            key={character}
+            game={this.props.match.params.game} 
+            character={character} 
+        />);
+        return charactersList;
+    }
     componentDidMount() {
-        fetch("http://" + serverIP["serverIP"] + "/get/games") // Calls server for characters to fill the tiles currently set for development server
+      console.log(this.props)
+        fetch("http://" + serverIP["serverIP"] + "/get/" + this.props.match.params.game + "/characters") // Calls server for characters to fill the tiles currently set for development server
           .then(res => res.json())
           .then(
             (result) => {
@@ -35,20 +42,15 @@ export default class Games extends Component {
                 error
               });
             }
-        )
-    }
-      getGames() {
-        var games = this.state.items;
-        const gamesList = games.map((game) => <Game key={game} game={game} />);
-        return gamesList;
-    }
+          )
+      }
     render () {
         return (
             <div>
-                <div className="Games">       
-                    {this.getGames()}
+                <div id="Characters">  
+                    {this.getCharacters()}
                 </div>
-                <Modal page="games"/> 
+                <Modal page="characters"/>
             </div>
         );
     }
