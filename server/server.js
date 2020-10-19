@@ -5,6 +5,7 @@ const { nextTick } = require('process');
 const app = express();
 app.use(express.static(path.join(__dirname, '../build')));
 app.use(bodyParser.urlencoded({ extended: true }));
+const serverIP = "165.227.88.107:8080";
 
 var characters = ["Bowser", "BowserJr", "DrMario", "DuckHunt", "KingDedede"];
 var db = {
@@ -130,7 +131,7 @@ app.post('/submission-game', function (req,res) {
   else{
     db["games"].push(submission);
     db[submission] = {'characters': []};
-    res.redirect('http://' + serverIP["serverIP"] + '/');
+    res.redirect('http://' + serverIP + '/');
   }
 });
 
@@ -145,7 +146,7 @@ app.post('/:game/submission-character', function (req,res) {
   else{
     db[game]["characters"].push(submission);
     db[game][submission] = {'attacks': []};
-    res.redirect('http://' + serverIP["serverIP"] + '/' + game);
+    res.redirect('http://' + serverIP + '/' + game);
   }
 });
 
@@ -161,7 +162,7 @@ app.post('/submission/:game/:character/attack', function (req,res) {
   else{
     db[game][character]["attacks"].push(submission);
     db[game][character][submission] = {};
-    res.redirect('http://' + serverIP["serverIP"] + '/' + game + '/' + character);
+    res.redirect('http://' + serverIP + '/' + game + '/' + character);
   }
 });
 
