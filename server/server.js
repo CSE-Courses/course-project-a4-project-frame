@@ -125,12 +125,12 @@ app.post('/submission-game', function (req,res) {
   console.log(req.params);
   var submission = req.body["game"];
   if(submission in db["games"]){
-    res.redirect('back');
+    res.sendStatus(204);
   }
   else{
     db["games"].push(submission);
     db[submission] = {'characters': []};
-    res.redirect('http://localhost:8080/');
+    res.redirect('http://' + serverIP["serverIP"] + '/');
   }
 });
 
@@ -140,12 +140,12 @@ app.post('/:game/submission-character', function (req,res) {
   var game = req.params["game"];
   var submission = req.body["character"];
   if(submission in db[game]){
-    res.redirect('back');
+    res.sendStatus(204);
   }
   else{
     db[game]["characters"].push(submission);
     db[game][submission] = {'attacks': []};
-    res.redirect('http://localhost:8080/' + game);
+    res.redirect('http://' + serverIP["serverIP"] + '/' + game);
   }
 });
 
@@ -156,12 +156,12 @@ app.post('/submission/:game/:character/attack', function (req,res) {
   var character = req.params["character"];
   var submission = req.body["move"];
   if(submission in db[game][character]){
-    res.redirect('back');
+    res.sendStatus(204);
   }
   else{
     db[game][character]["attacks"].push(submission);
     db[game][character][submission] = {};
-    res.redirect('http://localhost:8080/' + game + '/' + character);
+    res.redirect('http://' + serverIP["serverIP"] + '/' + game + '/' + character);
   }
 });
 
