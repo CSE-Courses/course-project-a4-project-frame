@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './ReportForm.css';
+import './Forms.css';
 
 export default class ReportForm extends React.Component {
 
