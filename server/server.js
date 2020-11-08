@@ -2,12 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
+const multer = require('multer');
 const { nextTick } = require('process');
 const app = express();
 app.use(express.static(path.join(__dirname, '../build')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-const serverIP = "165.227.88.107:8080";
+const imgUpload = multer({dest: './uploads'});
+const serverIP = "localhost:8080";
 
 var characters = ["Bowser", "BowserJr", "DrMario", "DuckHunt", "KingDedede"];
 var db = {
@@ -66,7 +68,16 @@ app.get('/get/:game/:character/Scenarios', function(req,res){
   res.json(db[game][character]["scenarios"]);
 })
 
-
+app.get('/images/:game/:character', function(req, res){
+  var game = req.params["game"];
+  var character = req.params['character'];
+  if(db[game][character]['image'] == ''){
+    res.sendStatus(404);
+  }
+  else{
+    res.sendFile(__dirname + '/uploads/' + db[game][character]['image']);
+  }
+});
 
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, '../build', 'index.html'));
@@ -145,17 +156,25 @@ app.post('/submission-game', function (req,res) {
   }
 });
 
-app.post('/:game/submission-character', function (req,res) {
+app.post('/:game/submission-character', imgUpload.single('image'), function (req,res) {
   console.log('Got body:', req.body);
   console.log(req.params);
   var game = req.params["game"];
   var submission = req.body["character"];
+  var filename = '';
+  if(!req.file){
+    console.log('No file submitted')
+  }
+  else {
+    filename = req.file.filename;
+  }
   if(submission in db[game]){
     res.sendStatus(204);
   }
   else{
     db[game]["characters"].push(submission);
-    db[game][submission] = {'attacks': []};
+    db[game][submission] = {'attacks': [], 'image': filename};
+    console.log('')
     res.redirect('http://' + serverIP + '/' + game);
   }
 });
