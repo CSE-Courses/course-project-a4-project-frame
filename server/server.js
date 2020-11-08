@@ -1,10 +1,12 @@
 const express = require('express');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const cors = require('cors');
 const path = require('path');
 const { nextTick } = require('process');
 const app = express();
 app.use(express.static(path.join(__dirname, '../build')));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 const serverIP = "165.227.88.107:8080";
 
 var characters = ["Bowser", "BowserJr", "DrMario", "DuckHunt", "KingDedede"];
@@ -164,6 +166,7 @@ app.post('/submission/:game/:character/attack', function (req,res) {
   var game = req.params["game"];
   var character = req.params["character"];
   var submission = req.body["move"];
+
   if(submission in db[game][character]){
     res.sendStatus(204);
   }
