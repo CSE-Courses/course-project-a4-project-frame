@@ -14,6 +14,7 @@ var db = {
     'characters': ["Bowser", "BowserJr", "DrMario", "DuckHunt", "KingDedede"],
     'Bowser': {
       'attacks': ["side b", "jab"],
+      'scenarios': ['1'],
     },
     "BowserJr": {
       'attacks': [],
@@ -54,6 +55,13 @@ app.get('/get/:game/:character/attacks', function(req,res){
   var game = req.params["game"];
   var character = req.params["character"];
   res.json(db[game][character]["attacks"]);
+})
+
+app.get('/get/:game/:character/Scenarios', function(req,res){
+  console.log('getting scenarios');
+  var game = req.params["game"];
+  var character = req.params["character"];
+  res.json(db[game][character]["scenarios"]);
 })
 
 

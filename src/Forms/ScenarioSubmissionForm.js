@@ -1,10 +1,10 @@
-//renders the attack submission form
+//renders the Scenario submission form
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import {withRouter} from 'react-router-dom';
 import serverIP from '../serverIP';
 
-export default function AttackSubmissionForm() {
+export default function CharacterSubmissionForm() {
     const location = useLocation();
     return (
         <div>
@@ -18,7 +18,7 @@ class SubmissionForm extends React.Component {
     constructor(props) {
     super(props);
     this.state = {
-      move: '',
+      scenario: '',
       image: null,
       move1: '',
       move2: '',
@@ -27,7 +27,7 @@ class SubmissionForm extends React.Component {
     }
     
     mySubmitHandler = (event) => {
-    alert("Character info submitted.");
+    alert("Scenario info submitted.");
     event.preventDefault();
     }
     
@@ -37,7 +37,6 @@ class SubmissionForm extends React.Component {
     this.setState({[nam]: val});
     }
     
-    //action={'http://' + serverIP["serverIP"] + "/submission-attack" + this.props.location}>
     render() {
     console.log(this.props);
     return (
@@ -48,19 +47,19 @@ class SubmissionForm extends React.Component {
         <div className="container" >
           <div className="row">
           <div className="col-25">
-            <label>Move name:</label>
+            <label>Scenario name:</label>
           </div>
           <div className="col-75">
             <input
              type='text'
-             name='move'
+             name='scenario'
              onChange={this.myChangeHandler}
             />
           </div>
           </div>
           <div className="row">
           <div className="col-25">
-            <label>Upload image of the move:</label>
+            <label>Upload image of the scenario:</label>
           </div>
           <div className="select-button">
             <input
@@ -73,36 +72,12 @@ class SubmissionForm extends React.Component {
           </div>
           <div className="row">
           <div className="col-25">
-            <label>Move startup frame data:</label>
+            <label>Write a brief scenario description:</label>
           </div>
           <div className="col-75">
             <input
             type='text'
             name='move1'
-            onChange={this.myChangeHandler}
-            />
-          </div>
-          </div>
-          <div className="row">
-          <div className="col-25">
-            <label>Shield data:</label>
-          </div>
-          <div className="col-75">
-            <input
-            type='text'
-            name='move2'
-            onChange={this.myChangeHandler}
-            />
-          </div>
-          </div>
-          <div className="row">
-          <div className="col-25">
-            <label>Active frames:</label>
-          </div>
-          <div className="col-75">
-            <input
-            type='text'
-            name='move3'
             onChange={this.myChangeHandler}
             />
           </div>

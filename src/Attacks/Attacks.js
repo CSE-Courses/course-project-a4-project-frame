@@ -49,6 +49,9 @@ export default class Attacks extends Component {
     render () {
         return (
             <div>
+                <Link Link to={"./" + this.props.match.params.character + "/" + "Scenarios"}>
+                  <button class="buttons">Scenarios</button>
+                </Link>
                 <div className="Attacks">       
                     {this.getAttacks()}
                 </div>
