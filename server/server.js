@@ -14,6 +14,8 @@ api.use(cors());
 api.use(expressapi.json());
 api.use(bodyParser.urlencoded({extended: true}));
 const mysql = require("mysql");
+//const mysql2 = require("mysql2");
+//var SSH2Client = require('ssh2').Client;
 const { createBrotliCompress } = require('zlib');
 const { Callbacks } = require('jquery');
 
@@ -21,30 +23,8 @@ app.use(cors());
 app.use(express.json());
 // ----------------------
 
-var characters = ["Bowser", "BowserJr", "DrMario", "DuckHunt", "KingDedede"];
-var db = {
-  "games": ["Ultimate", "Tekken", "DBZ"],
-  "Ultimate": {
-    'characters': ["Bowser", "BowserJr", "DrMario", "DuckHunt", "KingDedede"],
-    'Bowser': {
-      'attacks': ["side b", "jab"],
-    },
-    "BowserJr": {
-
-    },
-    "DrMario" : {},
-    "DuckHunt": {},
-    "KingDedede": {},
-  },
-  'Tekken': {
-    'characters': [],
-
-  },
-  'DBZ': {
-    'characters': [],
-
-  },
-}; 
+//var characters = ["Bowser", "BowserJr", "DrMario", "DuckHunt", "KingDedede"];
+var db = {};
 
 // ------------------------ Testing --------------------------
 
@@ -82,10 +62,20 @@ app.get('/', function (req, res) {
 });
 
 
-//Used for getting the data from database and sending to react element
 app.get('/get/games', function(req,res){
   console.log('getting games');
-  res.json(db["games"]);
+  const gamez = [];
+  const sqlSelectGames = "SELECT game FROM games";
+  dbInfo.query(sqlSelectGames, (err, result) => {
+    result.map((g) => {
+      const test = String(g.game);
+      gamez.push(test);
+    })
+
+    res.json(gamez);
+
+  })
+
 });
 
 app.get('/get/:game/characters', function(req,res){
@@ -93,20 +83,28 @@ app.get('/get/:game/characters', function(req,res){
   var game = req.params["game"];
   const characterz = []
 
-  const sqlSelect = "SELECT characters FROM smashultimate";
-  dbInfo.query(sqlSelect, (err, result) => {
-    console.log(result);
+  console.log(req.params)
+  console.log(req.params.game)
 
-    result.map((c) => {
-      console.log(c.characters);
-      const test = String(c.characters)
-      console.log(typeof(test));
-      characterz.push(test);
-      console.log(characterz.length)
+  var table;
+  if(req.params.game == "Ultimate"){
+    table = "smashultimate";
+  } else {
+    res.end()
+  }
 
-    })
-      console.log(characterz)
+  const sqlSelectCharacters = "SELECT characters FROM " + table;
+  dbInfo.query(sqlSelectCharacters, (err, result) => {
+    if(err){
+
+    } else {
+      result.map((c) => {
+        const test = String(c.characters)
+        characterz.push(test);
+
+      })
       res.json(characterz);
+    }
 
   })
 
@@ -116,10 +114,27 @@ app.get('/get/:game/:character/attacks', function(req,res){
   console.log('getting attacks');
   var game = req.params["game"];
   var character = req.params["character"];
-  res.json(db[game][character]["attacks"]);
+  const attackz = [];
+
+  const sqlSelectAttacks =
+   "SELECT moves FROM smashultimate WHERE characters = \"" + String(character) + `"`;
+
+   dbInfo.query(sqlSelectAttacks, (err, result) => {
+    var x = result[0];
+    const test = String(x.moves)
+    var attacks = test.split(',');
+
+    for (var at of attacks){
+      if(at == "null"){
+        break;
+      } else {
+        attackz.push(at);
+      }
+    }
+
+     res.json(attackz)
+   })
 })
-
-
 
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, '../build', 'index.html'));
@@ -127,11 +142,14 @@ app.get('/*', function (req, res) {
 
 //Handles Form submissions for adding to the website
 app.post('/submission-:type', function (req,res) {
-  //console.log('Got body:', req.body);
+  
+  console.log('Got body:', req.body);
+
   var type = req.params["type"]
   var submission = req.body[type];
 
   if(type == "game"){
+    //Check if game is in db - COME BACK TO LATER
     if(submission in db["games"]){
       res.redirect('back');
     }
@@ -144,15 +162,43 @@ app.post('/submission-:type', function (req,res) {
 
   if(type == "character"){
     var game = req.body["game"];
-    console.log(db[game]["characters"])
-    if(submission in db[game]){
-      res.redirect('back');
-    }
-    else{
-      db[game]["characters"].push(submission);
-    db[game][submission] = {'attacks': []};
-    res.redirect('http://localhost:3000/' + game);
-    }
+    //console.log(db["Ultimate"]["characters"])
+    //Check if character is in db - COME BACK TO LATER
+    //if(submission in db[game]){
+   //   res.redirect('back');
+    //}
+    //else{
+
+    console.log(req.body.move1)
+    console.log(typeof req.body.move1)
+
+    var moves = [];
+    moves.push(req.body.move1);
+    moves.push(req.body.move2);
+    moves.push(req.body.move3);
+    var movesCSV = moves.join(",");
+
+    console.log(movesCSV);
+
+    const sqlInsertCharacter = "INSERT INTO smashultimate VALUES (" +
+      `"` + String(req.body.character) + `",` +
+      `"` + "Ultimate" + `",` +
+      `"` + req.body.image + `",` +
+      `"` + req.body.description + `",` +
+      `"` + req.body.move1 + `",` +
+      `"` + req.body.move2 + `",` +
+      `"` + req.body.move3 + `",` +
+      `"` + String(movesCSV) + `"` +
+    ")"
+
+    console.log(sqlInsertCharacter);
+
+    dbInfo.query(sqlInsertCharacter, (err, result) => {});
+
+      //db[game]["characters"].push(submission);
+    //db[game][submission] = {'attacks': []};
+    res.redirect('http://localhost:8080/' + game);
+    
   }
 
   if(type == "attack"){

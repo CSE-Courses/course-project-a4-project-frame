@@ -15,6 +15,7 @@ export default class Characters extends Component {
       }
     getCharacters() {
         const characters = this.state.items;
+        console.log(characters)
         const charactersList = characters.map((character) => <Character 
             key={character}
             game={this.props.match.params.game} 

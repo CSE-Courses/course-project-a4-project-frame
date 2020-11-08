@@ -8,7 +8,7 @@ class CharacterForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			character: '',
+			characters: '',
 			game: '',
 			description: '',
 			image: null,
