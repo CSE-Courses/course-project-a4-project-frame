@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import {withRouter} from 'react-router-dom';
 import serverIP from '../serverIP';
 
-export default function AttackSubmissionForm() {
+export default function CharacterSubmissionForm() {
     const location = useLocation();
     return (
         <div>
