@@ -15,30 +15,6 @@ export default function CharacterSubmissionForm() {
 }
 
 class CharacterForm extends React.Component {
-
-	constructor(props) {
-		super(props);
-		this.state = {
-			character: '',
-			game: '',
-			description: '',
-			image: null,
-			move1: '',
-			move2: '',
-			move3: '',
-		};
-	}
-	
-	mySubmitHandler = (event) => {
-		alert("Character info submitted.");
-		event.preventDefault();
-	}
-	
-	myChangeHandler = (event) => {
-		let nam = event.target.name;
-		let val = event.target.value;
-		this.setState({[nam]: val});
-	}
 	
 	render() {
 		return (
@@ -54,7 +30,6 @@ class CharacterForm extends React.Component {
 							<input
 								type='text'
 								name='character'
-								onChange={this.myChangeHandler}
 							/>
 						</div>
 					</div>
@@ -67,7 +42,6 @@ class CharacterForm extends React.Component {
 								type='file'
 								name='image'
 								accept=".jpg,.jpeg,.png,.bmp,.gif"
-								onChange={this.myChangeHandler}
 							/>
 						</div>
 					</div>
