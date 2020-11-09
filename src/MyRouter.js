@@ -15,8 +15,7 @@ export default function RouterPage() {
             </Link>
             <Route component={Games} exact path="/" />
             <Route component={Characters} exact path="/:game" />
-            <Route component={Attacks} exact path ="/:game/:character" />
-            <Route component={Scenarios} exact path ="/:game/:character/Scenarios" />
+            <Route component={Attacks} path ="/:game/:character" />
             
         </div>
     )
