@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
-import './Attacks.css'
+import './Attacks.css';
+import serverIP from '../serverIP';
 
 
 export default class Attack extends Component {
@@ -13,18 +14,17 @@ export default class Attack extends Component {
                             <th className="name">{ this.props.attack }</th>
                         </tr>
                         <tr>
-                            <td><img src="https://www.ssbwiki.com/images/thumb/3/35/Mariosmashattack.jpg/200px-Mariosmashattack.jpg"></img></td>
+                            <td><img src={"http://" + serverIP["serverIP"] + "/images/" + this.props.game + "/" + this.props.character + "/" + this.props.attack} height="150px" width="150px"></img></td>
                         </tr>
                         <tr>
-                            <td className="start">22 Frame Start Up</td>
+                            <td className="start">{ this.props.startup } Frame Start Up</td>
+                        </tr>
+                        <tr>
+                            <td className="shield">{ this.props.shield } On shield</td>
                             
                         </tr>
                         <tr>
-                            <td className="shield">-20 On shield</td>
-                            
-                        </tr>
-                        <tr>
-                            <td className="active">Active on 22-25</td>
+                            <td className="active">Active on { this.props.active }</td>
                         </tr>
                     </tbody>
                 </table>
