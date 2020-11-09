@@ -54,10 +54,13 @@ export default class Attacks extends Component {
     render () {
         return (
             <div>
-                <div className="Attacks">       
-                    {this.getAttacks()}
-                </div>
-                <Modal page="attacks" /> 
+              <Link Link to={"./" + this.props.match.params.character + "/" + "Scenarios"}>
+                <button>Scenarios</button>
+              </Link>
+              <div className="Attacks">       
+                  {this.getAttacks()}
+              </div>
+              <Modal page="attacks" /> 
             </div>
         );
     }
