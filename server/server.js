@@ -20,7 +20,8 @@ var db = {
       'attacks': [{"name": "side b"}, {"name": "jab"}],
       "side b": {},
       "jab": {},
-      'scenarios': ['1'],
+      'scenarios': [{'name': '1', 'description': 'Example scenario'}],
+      "1": {'description': 'Example scenario'},
     },
     "BowserJr": {
       'attacks': [],
@@ -72,12 +73,15 @@ app.get('/get/:game/:character/Scenarios', function(req,res){
 
 app.get('/images/:game', function(req, res){
   var game = req.params["game"];
-  if(!db[game]['image']){
+  if(!db[game]){
     res.sendStatus(404);
   }
   else{
     if(db[game]['image'] == ''){
-    res.sendStatus(404);
+      res.sendStatus(404);
+    }
+    else if (!db[game]['image']){
+      res.sendFile(__dirname + '/uploads/' + 'defaultGame');
     }
     else{
       res.sendFile(__dirname + '/uploads/' + db[game]['image']);
@@ -89,23 +93,39 @@ app.get('/images/:game', function(req, res){
 app.get('/images/:game/:character', function(req, res){
   var game = req.params["game"];
   var character = req.params['character'];
-  if(db[game][character]['image'] == ''){
+  if(!db[game][character]){
     res.sendStatus(404);
   }
   else{
-    res.sendFile(__dirname + '/uploads/' + db[game][character]['image']);
+    if(db[game][character]['image'] == ''){
+      res.sendStatus(404);
+    }
+    else if (!db[game][character]['image']){
+      res.sendFile(__dirname + '/uploads/' + 'defaultCharacter');
+    }
+    else{
+      res.sendFile(__dirname + '/uploads/' + db[game][character]['image']);
+    }
   }
 });
 
-app.get('/images/:game/:character/scenarios', function(req, res){
+app.get('/images/:game/:character/scenario/:scenario', function(req, res){
   var game = req.params["game"];
   var character = req.params['character'];
-  var attack = req.params['attack'];
-  if(db[game][character][attack]['image'] == ''){
+  var scenario = req.params['scenario'];
+  if(!db[game][character][scenario]){
     res.sendStatus(404);
   }
-  else{ 
-    res.sendFile(__dirname + '/uploads/' + db[game][character][scenarios]['image']);
+  else{
+    if(db[game][character][scenario]['image'] == ''){
+      res.sendStatus(404);
+    }
+    else if (!db[game][character][scenario]['image']){
+      res.sendFile(__dirname + '/uploads/' + 'defaultScenario');
+    }
+    else{ 
+      res.sendFile(__dirname + '/uploads/' + db[game][character][scenario]['image']);
+    }
   }
 });
 
@@ -113,11 +133,19 @@ app.get('/images/:game/:character/:attack', function(req, res){
   var game = req.params["game"];
   var character = req.params['character'];
   var attack = req.params['attack'];
-  if(!db[game][character][attack]){
+  if(!db[game][character][attack]['image']){
     res.sendStatus(404);
   }
   else{
-    res.sendFile(__dirname + '/uploads/' + db[game][character][attack]['image']);
+    if(!db[game][character][attack]){
+      res.sendStatus(404);
+    }
+    else if (!db[game][character][attack]['image']){
+      res.sendFile(__dirname + '/uploads/' + 'defaultAttack');
+    }
+    else{
+      res.sendFile(__dirname + '/uploads/' + db[game][character][attack]['image']);
+    }
   }
 });
 
@@ -196,5 +224,29 @@ app.post('/submission/:game/:character/attack', imgUpload.single('image'), funct
   }
 });
 
+app.post('/submission/:game/:character/Scenarios', imgUpload.single('image'), function (req,res) {
+  console.log('Got body:', req.body);
+  console.log(req.params);
+  var game = req.params["game"];
+  var character = req.params["character"];
+  var submission = req.body["scenario"];
+  var description = req.body["description"];
+  console.log(req.body);
+  var filename = '';
+  if(!req.file){
+    console.log('No file submitted')
+  }
+  else {
+    filename = req.file.filename;
+  }
+  if(submission in db[game][character]){
+    res.redirect('http://' + serverIP + '/' + game + '/' + character + "/scenarios");
+  }
+  else{
+    db[game][character]["scenarios"].push({'name': submission, 'description': description, 'image': filename});
+    db[game][character][submission] = {'name': submission, 'description': description, 'image': filename};
+    res.redirect('http://' + serverIP + '/' + game + '/' + character + "/scenarios");
+  }
+});
 
 app.listen(process.env.PORT || 8080);
