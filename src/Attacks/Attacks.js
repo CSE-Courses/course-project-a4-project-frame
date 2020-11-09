@@ -55,7 +55,7 @@ export default class Attacks extends Component {
         return (
             <div>
               <Link Link to={"./" + this.props.match.params.character + "/" + "Scenarios"}>
-                <button>Scenarios</button>
+                <button class="buttons">Scenarios</button>
               </Link>
               <div className="Attacks">       
                   {this.getAttacks()}

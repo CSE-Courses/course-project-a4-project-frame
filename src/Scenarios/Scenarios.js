@@ -17,11 +17,13 @@ export default class Scenarios extends Component {
     }
     getScenarios() {
         var scenarios = this.state.items;
+        console.log(scenarios);
         const sceanariosList = scenarios.map((scenario) => <Scenario
             game={this.props.match.params.game} 
             character={this.props.match.params.character} 
-            key = {scenario}
-            scenario={scenario}
+            key = {scenario['name']}
+            scenario={scenario['name']}
+            description = {scenario['description']}
         />);
         return sceanariosList;
     }
