@@ -6,17 +6,17 @@ import Characters from './Characters/Characters.js';
 import Attacks from './Attacks/Attacks'
 import Scenarios from './Unique/Scenarios'
 import Navbar from './Navbar';
+import About from './About/about.js';
 
 export default function RouterPage() {
     return (
         <div>
-            <Link to="/">
-                <Navbar />
-            </Link>
+            <Navbar />
             <Route component={Games} exact path="/" />
             <Route component={Characters} exact path="/:game" />
             <Route component={Attacks} exact path ="/:game/:character" />
             <Route component={Scenarios} exact path ="/:game/:character/Scenarios" />
+            <Route component={About} exact path="/about" />
             
         </div>
     )

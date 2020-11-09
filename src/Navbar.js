@@ -14,7 +14,7 @@ export default function Navbar() {
           <ReactBootStrap.Nav.Link href="#noobs">Frame Data Guide</ReactBootStrap.Nav.Link>
         </ReactBootStrap.Nav>
         <ReactBootStrap.Nav>
-          <ReactBootStrap.Nav.Link href="#details">About</ReactBootStrap.Nav.Link>
+          <ReactBootStrap.Nav.Link href="/about">About</ReactBootStrap.Nav.Link>
         </ReactBootStrap.Nav>
       </ReactBootStrap.Navbar.Collapse>
     </ReactBootStrap.Navbar>
