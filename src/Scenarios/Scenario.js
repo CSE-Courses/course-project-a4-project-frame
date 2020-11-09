@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import './Scenarios.css'
+import serverIP from '../serverIP';
 
 
 export default class Scenario extends Component {
@@ -13,10 +14,10 @@ export default class Scenario extends Component {
                             <th className="name">{ this.props.scenario}</th>
                         </tr>
                         <tr>
-                            <td><img src="https://i.redd.it/dql11e7besx21.jpg"></img></td>
+                            <td><img src={"http://" + serverIP["serverIP"] + "/images/" + this.props.game + "/" + this.props.character + "/scenario/" + this.props.scenario} height="400px" width="400px"></img></td>
                         </tr>
                         <tr>
-                            <td className="description">Due to Broly's big hitbox, some attacks whiff on small characters</td>
+                            <td className="description">{ this.props.description }</td>
                             
                         </tr>
                     </tbody>
