@@ -74,11 +74,11 @@ app.get('/get/:game/:character/Scenarios', function(req,res){
 app.get('/images/:game', function(req, res){
   var game = req.params["game"];
   if(!db[game]){
-    res.sendStatus(404);
+    res.sendFile(__dirname + '/uploads/' + 'defaultGame');
   }
   else{
     if(db[game]['image'] == ''){
-      res.sendStatus(404);
+      res.sendFile(__dirname + '/uploads/' + 'defaultGame');
     }
     else if (!db[game]['image']){
       res.sendFile(__dirname + '/uploads/' + 'defaultGame');
@@ -94,11 +94,11 @@ app.get('/images/:game/:character', function(req, res){
   var game = req.params["game"];
   var character = req.params['character'];
   if(!db[game][character]){
-    res.sendStatus(404);
+    res.sendFile(__dirname + '/uploads/' + 'defaultCharacter');
   }
   else{
     if(db[game][character]['image'] == ''){
-      res.sendStatus(404);
+      res.sendFile(__dirname + '/uploads/' + 'defaultCharacter');
     }
     else if (!db[game][character]['image']){
       res.sendFile(__dirname + '/uploads/' + 'defaultCharacter');
@@ -114,11 +114,11 @@ app.get('/images/:game/:character/scenario/:scenario', function(req, res){
   var character = req.params['character'];
   var scenario = req.params['scenario'];
   if(!db[game][character][scenario]){
-    res.sendStatus(404);
+    res.sendFile(__dirname + '/uploads/' + 'defaultScenario');
   }
   else{
     if(db[game][character][scenario]['image'] == ''){
-      res.sendStatus(404);
+      res.sendFile(__dirname + '/uploads/' + 'defaultScenario');
     }
     else if (!db[game][character][scenario]['image']){
       res.sendFile(__dirname + '/uploads/' + 'defaultScenario');
@@ -133,12 +133,12 @@ app.get('/images/:game/:character/:attack', function(req, res){
   var game = req.params["game"];
   var character = req.params['character'];
   var attack = req.params['attack'];
-  if(!db[game][character][attack]['image']){
-    res.sendStatus(404);
+  if(!db[game][character][attack]){
+    res.sendFile(__dirname + '/uploads/' + 'defaultAttack');
   }
   else{
-    if(!db[game][character][attack]){
-      res.sendStatus(404);
+    if(!db[game][character][attack]['image']){
+      res.sendFile(__dirname + '/uploads/' + 'defaultAttack');
     }
     else if (!db[game][character][attack]['image']){
       res.sendFile(__dirname + '/uploads/' + 'defaultAttack');
