@@ -26,7 +26,7 @@ export default class ReportForm extends React.Component {
 
   render() {
     return (
-     <form method="POST" action={"http://" + serverIP['serverIP'] + "/submission-game"}>
+     <form method="POST" action={"http://" + serverIP['serverIP'] + "/submission-game"} enctype="multipart/form-data">
        <br/>
        <h1>Submission Form</h1>
       <div className="container">

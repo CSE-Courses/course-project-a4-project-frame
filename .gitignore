@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+#images
+/server/uploads
+
 # production
 /build
 

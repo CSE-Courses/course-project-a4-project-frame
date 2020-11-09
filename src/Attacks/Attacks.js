@@ -17,11 +17,16 @@ export default class Attacks extends Component {
     }
     getAttacks() {
         var attacks = this.state.items;
+        console.log(attacks);
         const attacksList = attacks.map((attack) => <Attack 
             game={this.props.match.params.game} 
             character={this.props.match.params.character} 
-            attack={attack}
-            key = {attack}
+            attack={attack["name"]}
+            key = {attack["name"]}
+            startup = {attack['startup']}
+            active = {attack['active']}
+            shield = {attack['shield']}
+
         />);
         return attacksList;
     }

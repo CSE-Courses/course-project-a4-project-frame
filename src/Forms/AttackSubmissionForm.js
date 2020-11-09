@@ -41,7 +41,7 @@ class SubmissionForm extends React.Component {
     render() {
     console.log(this.props);
     return (
-      <form method="POST" action={'http://' + serverIP["serverIP"]  + '/submission' + this.props.location + "/attack"} >
+      <form method="POST" action={'http://' + serverIP["serverIP"]  + '/submission' + this.props.location + "/attack" } enctype="multipart/form-data">
 	    <br/>
         <h1>Submission form</h1>
         <br/>
@@ -78,7 +78,7 @@ class SubmissionForm extends React.Component {
           <div className="col-75">
             <input
             type='text'
-            name='move1'
+            name='startup'
             onChange={this.myChangeHandler}
             />
           </div>
@@ -90,7 +90,7 @@ class SubmissionForm extends React.Component {
           <div className="col-75">
             <input
             type='text'
-            name='move2'
+            name='shield'
             onChange={this.myChangeHandler}
             />
           </div>
@@ -102,7 +102,7 @@ class SubmissionForm extends React.Component {
           <div className="col-75">
             <input
             type='text'
-            name='move3'
+            name='active'
             onChange={this.myChangeHandler}
             />
           </div>
