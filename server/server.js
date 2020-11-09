@@ -73,6 +73,7 @@ app.get('/get/:game/:character/Scenarios', function(req,res){
 
 app.get('/images/:game', function(req, res){
   var game = req.params["game"];
+  console.log("image: " + game);
   if(!db[game]){
     res.sendFile(__dirname + '/uploads/' + 'defaultGame');
   }
@@ -165,7 +166,7 @@ app.post('/submission-game', imgUpload.single('image'), function (req,res) {
   else {
     filename = req.file.filename;
   }
-  if(submission in db["games"]){
+  if(submission in db){
     res.sendStatus(204);
   }
   else{
@@ -243,6 +244,9 @@ app.post('/submission/:game/:character/Scenarios', imgUpload.single('image'), fu
     res.redirect('http://' + serverIP + '/' + game + '/' + character + "/scenarios");
   }
   else{
+    if(!db[game][character]["scenarios"]){
+      db[game][character]["scenarios"] = [];
+    }
     db[game][character]["scenarios"].push({'name': submission, 'description': description, 'image': filename});
     db[game][character][submission] = {'name': submission, 'description': description, 'image': filename};
     res.redirect('http://' + serverIP + '/' + game + '/' + character + "/scenarios");

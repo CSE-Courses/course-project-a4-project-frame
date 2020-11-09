@@ -39,6 +39,7 @@ export default class Games extends Component {
     }
       getGames() {
         var games = this.state.items;
+        console.log(games);
         const gamesList = games.map((game) => <Game key={game} game={game} />);
         return gamesList;
     }
