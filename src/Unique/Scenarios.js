@@ -26,7 +26,7 @@ export default class Scenarios extends Component {
         return sceanariosList;
     }
     componentDidMount() {
-        fetch("http://" + serverIP["serverIP"] + "/get/" + this.props.game + "/" + this.props.character +"/scenarios") // Calls server for characters to fill the tiles currently set for development server
+        fetch("http://" + serverIP["serverIP"] + "/get/" + this.props.match.params.game + "/" + this.props.match.params.character +"/scenarios") // Calls server for characters to fill the tiles currently set for development server
           .then(res => res.json())
           .then(
             (result) => {
@@ -49,6 +49,7 @@ export default class Scenarios extends Component {
     render () {
         return (
             <div>
+              <h1>Scenarios Page</h1>
                 <div className="Scenarios">       
                     {this.getScenarios()}
                 </div>
