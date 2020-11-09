@@ -75,12 +75,15 @@ app.get('/images/:game', function(req, res){
   if(!db[game]['image']){
     res.sendStatus(404);
   }
-  if(db[game]['image'] == ''){
-    res.sendStatus(404);
-  }
   else{
-    res.sendFile(__dirname + '/uploads/' + db[game]['image']);
+    if(db[game]['image'] == ''){
+    res.sendStatus(404);
+    }
+    else{
+      res.sendFile(__dirname + '/uploads/' + db[game]['image']);
+    }
   }
+  
 });
 
 app.get('/images/:game/:character', function(req, res){
