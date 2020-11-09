@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import "./Character.css";
-import BowserPic from './Bowser_SmashUltimate.png';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import {withRouter} from 'react-router-dom';
 import serverIP from '../serverIP';
