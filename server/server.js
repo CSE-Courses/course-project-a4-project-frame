@@ -4,6 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const multer = require('multer');
 const { nextTick } = require('process');
+var passport = require('passport');
 const app = express();
 app.use(express.static(path.join(__dirname, '../build')));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -44,6 +45,29 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
 
+var LocalStrategy = require('passport-local').Strategy;
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({ username: username }, function(err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
+  }
+));
+
+app.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login', failureFlash: true }))
+
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
 
 //Used for getting the data from database and sending to react element
 app.get('/get/games', function(req,res){
