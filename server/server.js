@@ -179,7 +179,7 @@ app.get('/*', function (req, res) {
 });
 
 
-app.post('/submission-game', imgUpload.single('image'), function (req,res) {
+app.post('/submission-game', imgUpload.single('image'), passport.authenticate('local', { failureFlash: 'Must be logged in to make changes' }), function (req,res) {
   console.log('Got body:', req.body);
   console.log(req.params);
   var submission = req.body["game"];
@@ -200,7 +200,7 @@ app.post('/submission-game', imgUpload.single('image'), function (req,res) {
   }
 });
 
-app.post('/:game/submission-character', imgUpload.single('image'), function (req,res) {
+app.post('/:game/submission-character', imgUpload.single('image'), passport.authenticate('local', { failureFlash: 'Must be logged in to make changes' }), function (req,res) {
   console.log('Got body:', req.body);
   console.log(req.params);
   var game = req.params["game"];
@@ -222,7 +222,7 @@ app.post('/:game/submission-character', imgUpload.single('image'), function (req
   }
 });
 
-app.post('/submission/:game/:character/attack', imgUpload.single('image'), function (req,res) {
+app.post('/submission/:game/:character/attack', imgUpload.single('image'), passport.authenticate('local', { failureFlash: 'Must be logged in to make changes' }), function (req,res) {
   console.log('Got body:', req.body);
   console.log(req.params);
   var game = req.params["game"];
@@ -249,7 +249,7 @@ app.post('/submission/:game/:character/attack', imgUpload.single('image'), funct
   }
 });
 
-app.post('/submission/:game/:character/Scenarios', imgUpload.single('image'), function (req,res) {
+app.post('/submission/:game/:character/Scenarios', imgUpload.single('image'), passport.authenticate('local', { failureFlash: 'Must be logged in to make changes' }), function (req,res) {
   console.log('Got body:', req.body);
   console.log(req.params);
   var game = req.params["game"];
