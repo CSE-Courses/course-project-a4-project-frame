@@ -8,12 +8,12 @@ export default function Register() {
     const location = useLocation();
     return (
         <div>
-            <CharacterForm location={location.pathname}/>
+            <RegisterForm location={location.pathname}/>
         </div>
     )
 }
 
-class CharacterForm extends React.Component {
+class RegisterForm extends React.Component {
 	
 	render() {
 		return (
