@@ -7,11 +7,13 @@ import Attacks from './Attacks/Attacks'
 import Scenarios from './Scenarios/Scenarios'
 import Navbar from './Navbar';
 import About from './About/about.js';
+import Login from './Login/Login.js';
 
 export default function RouterPage() {
     return (
         <div>
             <Navbar />
+            <Route component={Login} exact path="/login" />
             <Route component={Games} exact path="/" />
             <Route component={Characters} exact path="/:game" />
             <Route component={Attacks} exact path ="/:game/:character" />

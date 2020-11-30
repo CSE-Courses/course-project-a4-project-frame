@@ -16,6 +16,9 @@ export default function Navbar() {
         <ReactBootStrap.Nav>
           <ReactBootStrap.Nav.Link href="/about">About</ReactBootStrap.Nav.Link>
         </ReactBootStrap.Nav>
+        <ReactBootStrap.Nav>
+          <ReactBootStrap.Nav.Link href="/login">Log In</ReactBootStrap.Nav.Link>
+        </ReactBootStrap.Nav>
       </ReactBootStrap.Navbar.Collapse>
     </ReactBootStrap.Navbar>
      </div>
