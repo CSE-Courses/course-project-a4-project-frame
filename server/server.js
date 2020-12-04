@@ -4,6 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const multer = require('multer');
 const { nextTick } = require('process');
+var passport = require('passport');
 const app = express();
 app.use(express.static(path.join(__dirname, '../build')));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -44,6 +45,29 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
 
+var LocalStrategy = require('passport-local').Strategy;
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({ username: username }, function(err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
+  }
+));
+
+app.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login', failureFlash: true }))
+
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
 
 //Used for getting the data from database and sending to react element
 app.get('/get/games', function(req,res){
@@ -155,7 +179,7 @@ app.get('/*', function (req, res) {
 });
 
 
-app.post('/submission-game', imgUpload.single('image'), function (req,res) {
+app.post('/submission-game', imgUpload.single('image'), passport.authenticate('local', { failureFlash: 'Must be logged in to make changes' }), function (req,res) {
   console.log('Got body:', req.body);
   console.log(req.params);
   var submission = req.body["game"];
@@ -176,7 +200,7 @@ app.post('/submission-game', imgUpload.single('image'), function (req,res) {
   }
 });
 
-app.post('/:game/submission-character', imgUpload.single('image'), function (req,res) {
+app.post('/:game/submission-character', imgUpload.single('image'), passport.authenticate('local', { failureFlash: 'Must be logged in to make changes' }), function (req,res) {
   console.log('Got body:', req.body);
   console.log(req.params);
   var game = req.params["game"];
@@ -198,7 +222,7 @@ app.post('/:game/submission-character', imgUpload.single('image'), function (req
   }
 });
 
-app.post('/submission/:game/:character/attack', imgUpload.single('image'), function (req,res) {
+app.post('/submission/:game/:character/attack', imgUpload.single('image'), passport.authenticate('local', { failureFlash: 'Must be logged in to make changes' }), function (req,res) {
   console.log('Got body:', req.body);
   console.log(req.params);
   var game = req.params["game"];
@@ -225,7 +249,7 @@ app.post('/submission/:game/:character/attack', imgUpload.single('image'), funct
   }
 });
 
-app.post('/submission/:game/:character/Scenarios', imgUpload.single('image'), function (req,res) {
+app.post('/submission/:game/:character/Scenarios', imgUpload.single('image'), passport.authenticate('local', { failureFlash: 'Must be logged in to make changes' }), function (req,res) {
   console.log('Got body:', req.body);
   console.log(req.params);
   var game = req.params["game"];
