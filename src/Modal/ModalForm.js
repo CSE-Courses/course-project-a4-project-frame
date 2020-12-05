@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReportForm from '../Forms/ReportForm';
+import RemoveForm from '../Forms/RemoveForm';
 import CharacterSubmissionForm from '../Forms/CharacterSubmissionForm'
 import GameSubmissionForm from '../Forms/GameSubmissionForm'
 import AttackSubmissionForm from '../Forms/AttackSubmissionForm'
@@ -16,7 +16,9 @@ export default class ModalForm extends Component {
     this.reportClicked.bind(this);
     this.submissionClicked.bind(this);
   }
+  componentDidMount(){
 
+  }
   reportClicked(){
     this.setState({form: "report"});
     document.getElementById('reportButton').style.backgroundColor = "darkgrey";
@@ -42,7 +44,7 @@ export default class ModalForm extends Component {
           </div>
           <div id="forms">
             <div id="reportButton" className="form">
-              <h1 onClick={this.reportClicked.bind(this)}>Report</h1>
+              <h1 onClick={this.reportClicked.bind(this)}>Remove</h1>
             </div>
             <div id="submissionButton" className="form">
               <h1 onClick={this.submissionClicked.bind(this)}>Submission</h1>
@@ -51,7 +53,7 @@ export default class ModalForm extends Component {
           <div id="form">
             {
             form == "report" ?
-            (<ReportForm />) :
+            (<RemoveForm page={this.props.page} game={this.props.game} character={this.props.character}/>) :
             form == "submission" && this.props.page == "characters" ?
             (<CharacterSubmissionForm />):
             form == "submission" && this.props.page == "games" ?

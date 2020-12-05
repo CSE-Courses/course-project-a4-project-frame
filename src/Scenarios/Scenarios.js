@@ -55,7 +55,7 @@ export default class Scenarios extends Component {
                 <div className="Scenarios">       
                     {this.getScenarios()}
                 </div>
-                <Modal page="scenarios"/> 
+                <Modal page="scenarios" game={this.props.match.params.game} character={this.props.match.params.character}/> 
             </div>
         );
     }

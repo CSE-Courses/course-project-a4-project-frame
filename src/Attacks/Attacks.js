@@ -60,7 +60,7 @@ export default class Attacks extends Component {
               <div className="Attacks">       
                   {this.getAttacks()}
               </div>
-              <Modal page="attacks" /> 
+              <Modal page="attacks" game={this.props.match.params.game} character={this.props.match.params.character}/> 
             </div>
         );
     }
