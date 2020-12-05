@@ -442,4 +442,33 @@ app.post('/submission/:game/:character/Scenarios', imgUpload.single('image'), lo
   }
 });
 
+app.post('/remove', loggedIn, function(req, res){
+  if(users[req.user].cred == "admin") {
+    res.redirect('back');
+  }
+  else {
+    const game = req.body.game;
+    const character = req.body.character;
+    const scenario = req.body.scenario;
+    const attack = req.body.scenario;
+    if(attack) {
+      db[game][character]['attacks'] = db[game][character]['attacks'].filter(v => v["name"] !== attack);
+      delete db[game][character][attack];
+    }
+    else if(scenario){
+      db[game][character]['scenarios'] = db[game][character]['scenarios'].filter(v => v["name"] !== scenario);
+      delete db[game][character][scenario];
+    }
+    else if(character){
+      db[game]['characters'] = db[game]['characters'].filter(v => v !== character);
+      delete db[game][character];
+    }
+    else if (game){
+      db['games'] = db['games'].filter(v => v !== game);
+      delete db[game];
+    }
+    res.redirect('back'); //Redirect to suggestion page? submitted page
+  }
+});
+
 app.listen(process.env.PORT || 8080);
