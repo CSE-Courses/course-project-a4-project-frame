@@ -101,5 +101,6 @@ export default class RemoveForm extends React.Component {
         </div>
       </form>
     );
+    
   }
 }

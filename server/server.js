@@ -52,7 +52,7 @@ var db = {
 var suggestions = {};
 var changeNum = 1;
 
-const users = {"test": {password: "test", cred: "user"}, "admin":{password: 'admin', cred: 'admin'}};
+const users = {"test": {password: "test", cred: "user"}, "admin":{password: '$2b$10$NJK4S7LR7Nb931h4vRUNqOtTy5ft4AKIlCXiMTtwn15oZxSX5057.', cred: 'admin'}};
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '../build', 'index.html'));
@@ -154,7 +154,6 @@ app.get('/logout', function(req, res){
 
 function loggedIn(req, res, next) {
   if (req.user) {
-    console.log(req);
     console.log(req.user);
     next();
   } else {
@@ -338,6 +337,7 @@ app.get('/*', function (req, res) {
 app.post('/submission-game', imgUpload.single('image'), loggedIn, isAdmin, function (req,res) {
   console.log('Got body:', req.body);
   console.log(req.params);
+  console.log(req);
   var submission = req.body["game"];
   var filename = '';
   if(!req.file){
@@ -442,8 +442,10 @@ app.post('/submission/:game/:character/Scenarios', imgUpload.single('image'), lo
   }
 });
 
-app.post('/remove', loggedIn, function(req, res){
-  if(users[req.user].cred == "admin") {
+app.post('/remove', imgUpload.single('image'), loggedIn, function(req, res){
+  console.log(req.body);
+  console.log(req.params);
+  if(users[req.user].cred != "admin") {
     res.redirect('back');
   }
   else {
