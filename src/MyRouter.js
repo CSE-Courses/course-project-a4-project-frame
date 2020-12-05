@@ -13,12 +13,16 @@ export default function RouterPage() {
     return (
         <div>
             <Navbar />
-            <Route component={Login} exact path="/login" />
+            
             <Route component={Games} exact path="/" />
-            <Route component={Characters} exact path="/:game" />
+            <Switch>
+                <Route component={Login} exact path="/login" />
+                <Route component={About} exact path="/about" />
+                <Route component={Characters} exact path="/:game" />
+            </Switch>
             <Route component={Attacks} exact path ="/:game/:character" />
             <Route component={Scenarios} exact path ="/:game/:character/Scenarios" />
-            <Route component={About} exact path="/about" />
+            
             
         </div>
     )
