@@ -1,0 +1,48 @@
+body{
+    background-color: black;
+    font-color: white;
+}
+.header {
+    padding:10px;
+    text-align: center;
+    background: #ff6666;
+    color: white;
+    font-size: 25px;
+    font-family:  'Roboto', sans-serif;
+}
+.frame {
+    text-align: center;
+    font-size: 20px;
+    font-family:  'Roboto', sans-serif;
+}
+.frame-data {
+    text-align: center;
+    font-size: 17px;
+    font-family:  'Roboto', sans-serif;
+}
+.frame-data-steps{
+    text-align: center;
+    font-size: 17px;
+    font-family:  'Roboto', sans-serif;
+
+}
+.startup{
+    text-align: center;
+    font-size: 17px;
+    font-family:  'Roboto', sans-serif;
+}
+.active{
+    text-align: center;
+    font-size: 17px;
+    font-family:  'Roboto', sans-serif;
+}
+.recovery{
+    text-align: center;
+    font-size: 17px;
+    font-family:  'Roboto', sans-serif;
+}
+.frame-advantage{
+    text-align: center;
+    font-size: 17px;
+    font-family:  'Roboto', sans-serif;
+}
