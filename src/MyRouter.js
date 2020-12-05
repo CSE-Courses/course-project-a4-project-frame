@@ -7,6 +7,7 @@ import Attacks from './Attacks/Attacks'
 import Scenarios from './Scenarios/Scenarios'
 import Navbar from './Navbar';
 import About from './About/about.js';
+import ChangeLog from './ChangeLog/ChangeLog.js';
 
 export default function RouterPage() {
     return (
@@ -17,7 +18,7 @@ export default function RouterPage() {
             <Route component={Attacks} exact path ="/:game/:character" />
             <Route component={Scenarios} exact path ="/:game/:character/Scenarios" />
             <Route component={About} exact path="/about" />
-            
+            <Route component={ChangeLog} exact path="/changes" />
         </div>
     )
 }
