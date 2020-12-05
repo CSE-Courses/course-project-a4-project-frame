@@ -42,6 +42,9 @@ export default class Navbar extends Component {
             <ReactBootStrap.Nav.Link href="/about">About</ReactBootStrap.Nav.Link>
           </ReactBootStrap.Nav>
           <ReactBootStrap.Nav>
+            <ReactBootStrap.Nav.Link href="/changes">Change Log</ReactBootStrap.Nav.Link>
+          </ReactBootStrap.Nav>
+          <ReactBootStrap.Nav>
             <ReactBootStrap.Nav.Link href="/login" id="login">Log In</ReactBootStrap.Nav.Link>
           </ReactBootStrap.Nav>
         </ReactBootStrap.Navbar.Collapse>
