@@ -20,7 +20,7 @@ class CharacterForm extends React.Component {
 		return (
 			<form method="POST" action={"http://" + serverIP["serverIP"] + this.props.location +"/submission-character"} enctype="multipart/form-data">
 				<br/>
-				<h1>Submission form</h1>
+				<h1>Submission Form</h1>
 				<div className="container">
 					<div className="row">
 						<div className="col-25">

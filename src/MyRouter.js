@@ -8,17 +8,24 @@ import Scenarios from './Scenarios/Scenarios'
 import Navbar from './Navbar';
 import About from './About/about.js';
 import ChangeLog from './ChangeLog/ChangeLog.js';
+import Login from './Login/Login.js';
+import Register from './Register/Register.js';
 
 export default function RouterPage() {
     return (
         <div>
             <Navbar />
+            
             <Route component={Games} exact path="/" />
-            <Route component={Characters} exact path="/:game" />
+            <Switch>
+                <Route component={Login} exact path="/login" />
+                <Route component={About} exact path="/about" />
+                <Route component={Register} exact path="/register" />
+                <Route component={ChangeLog} exact path="/changes" />
+                <Route component={Characters} exact path="/:game" />
+            </Switch>
             <Route component={Attacks} exact path ="/:game/:character" />
             <Route component={Scenarios} exact path ="/:game/:character/Scenarios" />
-            <Route component={About} exact path="/about" />
-            <Route component={ChangeLog} exact path="/changes" />
         </div>
     )
 }
