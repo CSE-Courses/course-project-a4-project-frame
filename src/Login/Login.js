@@ -16,13 +16,13 @@ class App extends Component {
        </FormGroup>
        <FormGroup>
          <Label>Password</Label>
-         <Input type="text" placeholder ="Password" name="password"></Input>
+         <Input type="password" placeholder ="Password" name="password"></Input>
        </FormGroup>
        <Button className = "btn-lg btn-dark btn-block">
          Log In
        </Button>
        <div className = "text-center">
-         <a href="/sign up">Sign Up</a>
+         <a href="/register">Sign Up</a>
        </div>
     </Form>
   );

@@ -85,7 +85,7 @@ passport.use(new LocalStrategy({
         console.log('Incorrect password');
         return done(null, false, { message: 'Incorrect password.' });
       } else {
-        return cb(null, username);
+        return done(null, username);
       }
     });
   }
@@ -107,16 +107,42 @@ app.get('/loggedIn', function (req, res){
 });
 
 app.post('/register', function(req, res){
-  const username = req.body['username'];
-  const password = req.body['passsword'];
-  bcrypt.genSalt(10, function(err, salt) {
-    if (err) return next(err);
-    bcrypt.hash(req.body.password, salt, function(err, hash) {
-      if (err) return next(err);
-      newUser.password = hash; // Or however suits your setup
-      // Store the user to the database, then send the response
+  console.log(req.body)
+  const username = req.body.username;
+  const password = req.body.password;
+  if(username in users){
+    console.log('already registered');
+    res.send('back');
+  }
+  else {
+    bcrypt.hash(password, 10, function(err, hash) {
+      console.log(hash);
+      users[username] = {password: hash, cred: "user"};
+      console.log(users);
+      res.redirect('/login');
     });
-  });
+  }
+  
+  /*bcrypt.genSalt(10, function(err, salt) {
+    if (err) {
+      console.log(err);
+      res.sendStatus(400);
+    }
+    else {
+      bcrypt.hash(password, salt, function(err, hash) {
+        if (err){
+
+          console.log(err);
+          res.sendStatus(400);
+        } 
+        else {
+          users[username] = {password: hash, cred: "admin"};
+          res.redirect('/login');
+        }
+      });
+    }
+    
+  });*/
 });
 
 app.get('/logout', function(req, res){
