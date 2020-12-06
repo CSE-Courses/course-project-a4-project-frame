@@ -36,7 +36,7 @@ export default class Navbar extends Component {
         <ReactBootStrap.Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <ReactBootStrap.Navbar.Collapse id="responsive-navbar-nav">
           <ReactBootStrap.Nav className="mr-games">
-            <ReactBootStrap.Nav.Link href="#noobs">Frame Data Guide</ReactBootStrap.Nav.Link>
+            <ReactBootStrap.Nav.Link href="/guide">Frame Data Guide</ReactBootStrap.Nav.Link>
           </ReactBootStrap.Nav>
           <ReactBootStrap.Nav>
             <ReactBootStrap.Nav.Link href="/about">About</ReactBootStrap.Nav.Link>
