@@ -1,0 +1,85 @@
+.changeTag{
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 2%;
+}
+
+.changeTag {
+    display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding: 50px;
+	height: 100%;
+}
+
+.infoTable td {
+    width:500px;
+}
+
+.infoTable th {
+    width:500px;
+}
+
+#change{
+    background-color: rgb(187, 187, 187);
+}
+
+.remove{
+    background-color: red;
+}
+.remove h1{
+    margin: 0;
+}
+
+#game table, tbody, th, td {
+    border: 2px solid black;
+}
+
+#game {
+    border-collapse: collapse;
+}
+#character table, tbody, th, td {
+    border: 2px solid black;
+}
+
+#character {
+    border-collapse: collapse;
+}
+
+#scenario table, tbody, th, td {
+    border: 2px solid black;
+}
+
+#scenario {
+    border-collapse: collapse;
+}
+
+.attackTag{
+    /*
+    width:25%;
+    margin:0;
+    */
+    margin-left: 55px;
+    margin-right: 55px;
+}
+
+.name {
+    background-color: orange;
+}
+
+.start {
+    background-color: aquamarine;
+}
+
+.shield {
+    background-color: orangered;
+}
+
+.active {
+    background-color: palevioletred;
+}
+
+.buttons{
+    height:30px;
+    width:100px;
+} 
