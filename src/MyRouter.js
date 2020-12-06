@@ -7,7 +7,7 @@ import Attacks from './Attacks/Attacks'
 import Scenarios from './Scenarios/Scenarios'
 import Navbar from './Navbar';
 import About from './About/about.js';
-import ChangeLog from './ChangeLog/ChangeLog.js';
+import Changes from './Changes/Changes.js';
 import Login from './Login/Login.js';
 import Register from './Register/Register.js';
 import UserGuide from './Userguide/UserGuide.js';
@@ -22,7 +22,7 @@ export default function RouterPage() {
                 <Route component={Login} exact path="/login" />
                 <Route component={About} exact path="/about" />
                 <Route component={Register} exact path="/register" />
-                <Route component={ChangeLog} exact path="/changes" />
+                <Route component={Changes} exact path="/changes" />
                 <Route component={UserGuide} exact path="/guide" />
                 <Route component={Characters} exact path="/:game" />
             </Switch>

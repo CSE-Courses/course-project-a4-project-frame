@@ -101,13 +101,46 @@ function accessUsers(){
 
 accessUsers();
 
-function saveUsers(db){
-  var jsonString = JSON.stringify(db);
+function saveUsers(usersdb){
+  var jsonString = JSON.stringify(usersdb);
   fs.writeFile('./users.json', jsonString, err => {
     if (err) {
-        console.log('Error writing file', err)
+      console.log('Error writing file', err)
     } else {
-        console.log('Successfully wrote file')
+      console.log('Successfully wrote file')
+    }
+  })
+}
+
+var changes = {};
+
+async function accessChanges(){
+  fs.readFile('./changes.json', 'utf8', (err, jsonString) => {
+  if (err) {
+    console.log("Error reading file from disk:", err)
+    return
+  }
+  try {
+      changes = JSON.parse(jsonString);
+      changeNum = changes["changeNum"];
+      console.log(changes);
+      console.log(changeNum);
+  } catch(err) {
+      console.log('Error parsing JSON string:', err)
+    }
+  })
+}
+
+accessChanges();
+
+
+function saveChanges(){
+  var jsonString = JSON.stringify(changes);
+  fs.writeFile('./changes.json', jsonString, err => {
+    if (err) {
+      console.log('Error writing file', err)
+    } else {
+      console.log('Successfully wrote file')
     }
   })
 }
@@ -166,22 +199,23 @@ app.get('/loggedIn', function (req, res){
 });
 
 app.post('/register', function(req, res){
-  console.log(req.body)
   const username = req.body.username;
   const password = req.body.password;
   if(username in users){
     console.log('already registered');
-    res.send('back');
+    saveUsers(users);
+    res.redirect('back');
   }
   else {
     bcrypt.hash(password, 10, function(err, hash) {
       console.log(hash);
       users[username] = {password: hash, cred: "user"};
       console.log(users);
+      saveUsers(users);
       res.redirect('/login');
     });
   }
-  saveUsers(users);
+  
 });
 
 app.get('/logout', function(req, res){
@@ -200,22 +234,26 @@ function loggedIn(req, res, next) {
   }
 }
 
-function unverifiedSubmission(body, filename){
+function unverifiedSubmission(req, filename){
+  var body = req.body;
   console.log(body);
-  const game = body['game'];
+  var game = body['game'];
   console.log(game);
-  const character = body['character'];
+  var character = body['character'];
   const attack =  body["move"];
   const scenario = body["scenario"];
   if (attack){
+    game = req.params["game"];
+    character = req.params["character"];
     var startup = body["startup"];
     var shield = body["shield"];
     var active = body["active"];
-    suggestions[changeNum.toString()] = {
+    changes[changeNum.toString()] = {
+      "id": changeNum,
       "type": "attack", 
       "game": game, 
       "character": character, 
-      "move": attack, 
+      "attack": attack, 
       "startup": startup, 
       "shield": shield,
       "active": active,
@@ -223,8 +261,11 @@ function unverifiedSubmission(body, filename){
     };
   }
   else if (scenario) {
+    game = req.params["game"];
+    character = req.params["character"];
     var description = body["description"];
-    suggestions[changeNum.toString()] = {
+    changes[changeNum.toString()] = {
+      "id": changeNum,
       "type": "scenario", 
       "game": game, 
       "character": character, 
@@ -234,12 +275,15 @@ function unverifiedSubmission(body, filename){
     };
   }
   else if (character) {
-    suggestions[changeNum.toString()] = {"type": "character", "game": game, "character": character,  "image": filename};
+    game = req.params["game"];
+    changes[changeNum.toString()] = {"id": changeNum, "type": "character", "game": game, "character": character,  "image": filename};
   } else if (game) {
-    suggestions[changeNum.toString()] = {"type": "game", "game": game,  "image": filename};
+    changes[changeNum.toString()] = {"id": changeNum, "type": "game", "game": game,  "image": filename};
   }
   changeNum += 1;
-  console.log(suggestions);
+  changes["changeNum"] = changeNum;
+  console.log(changes);
+  saveChanges();
 }
 
 function isAdmin(req, res, next) {
@@ -254,7 +298,7 @@ function isAdmin(req, res, next) {
     else {
       filename = req.file.filename;
     }
-    unverifiedSubmission(req.body, filename);
+    unverifiedSubmission(req, filename);
     res.redirect('http://' + serverIP + '/'); //Redirect to suggestion page? submitted page
 
   }
@@ -262,10 +306,164 @@ function isAdmin(req, res, next) {
 
 
 //Used for getting the data from database and sending to react element
+app.get('/get/changes', function(req, res){
+  console.log('Changes requested');
+  changeList = [];
+  for(var key in changes){
+    if(key == "changeNum"){
+      continue;
+    }
+    else{
+      changeList.push(changes[key]);
+    }
+  }
+  res.json(changeList);
+});
+
+function confirmChange(id){
+  var change = changes[id];
+  var type = change['type'];
+  var filename = change['image'];
+  var game = change["game"];
+  var remove = change["remove"];
+  var character = change["character"];
+  var attack = change["attack"];
+  var scenario = change["scenario"];
+  if(type == "game"){
+    if(remove){
+      console.log("here");
+      console.log(game);
+      db['games'] = db['games'].filter(v => v !== game);
+      delete db[game];
+      delete changes[id];
+      saveDB(db);
+      saveChanges();
+    }
+    else{
+      var submission = game;
+      if(submission in db){
+        db[submission]['image'] = filename;
+        res.sendStatus(204);
+      }
+      else{
+        db["games"].push(submission);
+        db[submission] = {'characters': [], 'image': filename};
+      }
+      delete changes[id];
+      saveDB(db);
+      saveChanges();
+    }
+  }
+  else if (type == "character"){
+    if(remove){
+      db[game]['characters'] = db[game]['characters'].filter(v => v !== character);
+      delete db[game][character];
+      delete changes[id];
+      saveDB(db);
+      saveChanges();
+    }
+    else {
+      var submission = character;
+      
+      if(submission in db[game]){
+        db[game][submission]['image'] = filename;
+        res.sendStatus(204);
+      }
+      else{
+        db[game]["characters"].push(submission);
+        db[game][submission] = {'attacks': [], 'image': filename};
+      }
+      delete changes[id];
+      saveDB(db);
+      saveChanges();
+    }
+    
+  }
+  else if (type == "attack"){
+    if(remove){
+      console.log('attack');
+      db[game][character]['attacks'] = db[game][character]['attacks'].filter(v => v["name"] !== attack);
+      delete db[game][character][attack];
+      delete changes[id];
+      saveDB(db);
+      saveChanges();
+    }
+    else{
+      var submission = attack;
+      var active = change["active"];
+      var startup = change["startup"];
+      var shield = change["shield"];
+      if(submission in db[game][character]){
+        if(!db[game][character][submission]["description"]){
+          db[game][character][submission] = {'name': submission, 'active': active, 'startup': startup, 'shield': shield, 'image': filename};
+        }
+      }
+      else{
+        db[game][character]["attacks"].push({'name': submission, 'active': active, 'startup': startup, 'shield': shield, 'image': filename});
+        db[game][character][submission] = {'name': submission, 'active': active, 'startup': startup, 'shield': shield, 'image': filename};
+      }
+      delete changes[id];
+      saveDB(db);
+      saveChanges();
+    }
+    
+  }
+  else if (type == "scenario"){
+    if(remove){
+      db[game][character]['scenarios'] = db[game][character]['scenarios'].filter(v => v["name"] !== scenario);
+      delete db[game][character][scenario];
+      delete changes[id];
+      saveDB(db);
+      saveChanges();
+    }
+    else{
+      var submission = scenario;
+      var description = change["description"];
+      if(submission in db[game][character]){
+        // Make sure not attack
+        if(!db[game][character][submission]["active"]){
+          db[game][character][submission] = {'name': submission, 'description': description, 'image': filename};
+        }
+      }
+      else{
+        if(!db[game][character]["scenarios"]){
+          db[game][character]["scenarios"] = [];
+        }
+        db[game][character]["scenarios"].push({'name': submission, 'description': description, 'image': filename});
+        db[game][character][submission] = {'name': submission, 'description': description, 'image': filename};
+      }
+      delete changes[id];
+      saveDB(db);
+      saveChanges();
+    }
+  }
+}
+
+app.get('/submit-changes', loggedIn, function(req, res){
+  var action = req.query["action"];
+  var id = req.query['id'];
+  console.log(action);
+  
+  if(users[req.user].cred != "admin") {
+    // Make suggection
+    res.redirect('back');
+  }
+  else{
+    if (action == "accept"){
+      confirmChange(id);
+    }
+    else {
+      delete changes[id];
+      saveChanges();
+    }
+    res.redirect('back');
+  }
+  
+});
+
 app.get('/get/games', async function(req,res){
   console.log('getting games');
   //const db = await accessDB();
-  console.log(db);
   res.json(db["games"]);
 });
 
@@ -292,7 +490,40 @@ app.get('/get/:game/:character/Scenarios', function(req,res){
   res.json(db[game][character]["scenarios"]);
 })
 
+
+
 // Used to get the images for the webpage
+
+//Add image handle for changes
+app.get('/images/change/:id', function(req, res){
+  var id = req.params["id"];
+  
+  console.log("image: " + id);
+  if(!changes[id]){
+    console.log("Does Not Exist");
+    res.sendFile(__dirname + '/uploads/' + 'defaultGame');
+  }
+
+  var type = changes[id]["type"];
+  console.log(type);
+  if(changes[id]['image'] == ""){
+    if(type=="game"){
+      res.sendFile(__dirname + '/uploads/' + 'defaultGame');
+    }
+    else if (type=="character"){
+      res.sendFile(__dirname + '/uploads/' + 'defaultCharacter');
+    }
+    else if (type=="attack"){
+      res.sendFile(__dirname + '/uploads/' + 'defaultAttack');
+    }
+    else if (type=="scenario"){
+      res.sendFile(__dirname + '/uploads/' + 'defaultScenario');
+    }
+  } else{
+    res.sendFile(__dirname + '/uploads/' + db[game]['image']);
+  }
+});
+
 app.get('/images/:game', function(req, res){
   var game = req.params["game"];
   
@@ -375,6 +606,7 @@ app.get('/images/:game/:character/:attack', function(req, res){
     }
   }
 });
+
 
 
 // General route to server react router
@@ -504,27 +736,64 @@ app.post('/remove', imgUpload.single('image'), loggedIn, function(req, res){
   console.log(req.params);
   
   if(users[req.user].cred != "admin") {
-    // Make suggection
+    const game = req.body.game;
+    const character = req.body.character;
+    const scenario = req.body.scenario;
+    const attack = req.body.attack;
+    if(attack != '') {
+      changes[changeNum.toString()] = {
+        "id": changeNum,
+        "type": "attack", 
+        "game": game, 
+        "character": character, 
+        "attack": attack, 
+        "remove": true,
+      };
+    }
+    else if(scenario != ''){
+      changes[changeNum.toString()] = {
+        "id": changeNum,
+        "type": "scenario", 
+        "game": game, 
+        "character": character, 
+        "scenario": scenario, 
+        "remove": true,
+      };
+    }
+    else if(character != ''){
+      changes[changeNum.toString()] = {"remove": true, "id": changeNum, "type": "character", "game": game, "character": character};
+    }
+    else if (game){
+      changes[changeNum.toString()] = {"remove": true, "id": changeNum, "type": "game", "game": game};
+    }
+    changeNum += 1;
+    changes["changeNum"] = changeNum;
+    console.log(changes);
+    saveChanges();
     res.redirect('back');
   }
   else {
     const game = req.body.game;
     const character = req.body.character;
     const scenario = req.body.scenario;
-    const attack = req.body.scenario;
-    if(attack) {
+    const attack = req.body.attack;
+    if(attack != '') {
+      console.log('attack');
       db[game][character]['attacks'] = db[game][character]['attacks'].filter(v => v["name"] !== attack);
       delete db[game][character][attack];
     }
-    else if(scenario){
+    else if(scenario != ''){
+      console.log('scenario');
       db[game][character]['scenarios'] = db[game][character]['scenarios'].filter(v => v["name"] !== scenario);
       delete db[game][character][scenario];
     }
-    else if(character){
+    else if(character != ''){
+      console.log('character');
       db[game]['characters'] = db[game]['characters'].filter(v => v !== character);
       delete db[game][character];
     }
     else if (game){
+      console.log('game');
       db['games'] = db['games'].filter(v => v !== game);
       delete db[game];
     }
@@ -532,5 +801,6 @@ app.post('/remove', imgUpload.single('image'), loggedIn, function(req, res){
   }
   saveDB(db);
 });
+
 
 app.listen(process.env.PORT || 8080);
