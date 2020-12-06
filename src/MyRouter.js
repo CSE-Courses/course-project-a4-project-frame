@@ -10,6 +10,7 @@ import About from './About/about.js';
 import ChangeLog from './ChangeLog/ChangeLog.js';
 import Login from './Login/Login.js';
 import Register from './Register/Register.js';
+import UserGuide from './Userguide/UserGuide.js';
 
 export default function RouterPage() {
     return (
@@ -22,6 +23,7 @@ export default function RouterPage() {
                 <Route component={About} exact path="/about" />
                 <Route component={Register} exact path="/register" />
                 <Route component={ChangeLog} exact path="/changes" />
+                <Route component={UserGuide} exact path="/guide" />
                 <Route component={Characters} exact path="/:game" />
             </Switch>
             <Route component={Attacks} exact path ="/:game/:character" />

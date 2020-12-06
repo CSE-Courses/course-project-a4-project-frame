@@ -9,6 +9,7 @@ const passport = require('passport');
 const app = express();
 const flash = require('connect-flash');
 const bcrypt = require('bcrypt');
+const fs = require('fs');
 app.use(express.static(path.join(__dirname, '../build')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(flash());
@@ -21,8 +22,7 @@ app.use(passport.session());
 const imgUpload = multer({dest: './uploads'});
 const serverIP = "localhost:8080";
 
-var characters = ["Bowser", "BowserJr", "DrMario", "DuckHunt", "KingDedede"];
-var db = {
+/*var db = {
   "games": ["Ultimate", "Tekken", "DBZ"],
   "Ultimate": {
     'characters': ["Bowser", "BowserJr", "DrMario", "DuckHunt", "KingDedede"],
@@ -48,11 +48,70 @@ var db = {
     'characters': [],
 
   },
-}; 
+}; */
 var suggestions = {};
 var changeNum = 1;
 
-const users = {"test": {password: "test", cred: "user"}, "admin":{password: '$2b$10$NJK4S7LR7Nb931h4vRUNqOtTy5ft4AKIlCXiMTtwn15oZxSX5057.', cred: 'admin'}};
+//const users = {"test": {password: "test", cred: "user"}, "admin":{password: '$2b$10$NJK4S7LR7Nb931h4vRUNqOtTy5ft4AKIlCXiMTtwn15oZxSX5057.', cred: 'admin'}};
+
+var db = {};
+
+async function accessDB(){
+  fs.readFile('./db.json', 'utf8', (err, jsonString) => {
+  if (err) {
+    console.log("Error reading file from disk:", err)
+    return
+  }
+  try {
+      db = JSON.parse(jsonString)
+  } catch(err) {
+      console.log('Error parsing JSON string:', err)
+    }
+  })
+}
+
+accessDB();
+
+function saveDB(db){
+  var jsonString = JSON.stringify(db);
+  fs.writeFile('./db.json', jsonString, err => {
+    if (err) {
+        console.log('Error writing file', err)
+    } else {
+        console.log('Successfully wrote file')
+    }
+  })
+}
+
+var users = {};
+
+function accessUsers(){
+  fs.readFile('./users.json', 'utf8', (err, jsonString) => {
+  if (err) {
+    console.log("Error reading file from disk:", err)
+    return
+  }
+  try {
+      users = JSON.parse(jsonString)
+  } catch(err) {
+      console.log('Error parsing JSON string:', err)
+    }
+  })
+}
+
+accessUsers();
+
+function saveUsers(db){
+  var jsonString = JSON.stringify(db);
+  fs.writeFile('./users.json', jsonString, err => {
+    if (err) {
+        console.log('Error writing file', err)
+    } else {
+        console.log('Successfully wrote file')
+    }
+  })
+}
+
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '../build', 'index.html'));
@@ -122,27 +181,7 @@ app.post('/register', function(req, res){
       res.redirect('/login');
     });
   }
-  
-  /*bcrypt.genSalt(10, function(err, salt) {
-    if (err) {
-      console.log(err);
-      res.sendStatus(400);
-    }
-    else {
-      bcrypt.hash(password, salt, function(err, hash) {
-        if (err){
-
-          console.log(err);
-          res.sendStatus(400);
-        } 
-        else {
-          users[username] = {password: hash, cred: "admin"};
-          res.redirect('/login');
-        }
-      });
-    }
-    
-  });*/
+  saveUsers(users);
 });
 
 app.get('/logout', function(req, res){
@@ -221,15 +260,19 @@ function isAdmin(req, res, next) {
   }
 }
 
+
 //Used for getting the data from database and sending to react element
-app.get('/get/games', function(req,res){
+app.get('/get/games', async function(req,res){
   console.log('getting games');
+  //const db = await accessDB();
+  console.log(db);
   res.json(db["games"]);
 });
 
 app.get('/get/:game/characters', function(req,res){
   console.log('getting characters');
   var game = req.params["game"];
+  
   res.json(db[game]['characters']);
 });
 
@@ -237,6 +280,7 @@ app.get('/get/:game/:character/attacks', function(req,res){
   console.log('getting attacks');
   var game = req.params["game"];
   var character = req.params["character"];
+  
   res.json(db[game][character]["attacks"]);
 })
 
@@ -244,12 +288,14 @@ app.get('/get/:game/:character/Scenarios', function(req,res){
   console.log('getting scenarios');
   var game = req.params["game"];
   var character = req.params["character"];
+  
   res.json(db[game][character]["scenarios"]);
 })
 
 // Used to get the images for the webpage
 app.get('/images/:game', function(req, res){
   var game = req.params["game"];
+  
   console.log("image: " + game);
   if(!db[game]){
     res.sendFile(__dirname + '/uploads/' + 'defaultGame');
@@ -271,6 +317,7 @@ app.get('/images/:game', function(req, res){
 app.get('/images/:game/:character', function(req, res){
   var game = req.params["game"];
   var character = req.params['character'];
+  
   if(!db[game][character]){
     res.sendFile(__dirname + '/uploads/' + 'defaultCharacter');
   }
@@ -291,6 +338,7 @@ app.get('/images/:game/:character/scenario/:scenario', function(req, res){
   var game = req.params["game"];
   var character = req.params['character'];
   var scenario = req.params['scenario'];
+  
   if(!db[game][character][scenario]){
     res.sendFile(__dirname + '/uploads/' + 'defaultScenario');
   }
@@ -311,6 +359,7 @@ app.get('/images/:game/:character/:attack', function(req, res){
   var game = req.params["game"];
   var character = req.params['character'];
   var attack = req.params['attack'];
+  
   if(!db[game][character][attack]){
     res.sendFile(__dirname + '/uploads/' + 'defaultAttack');
   }
@@ -338,6 +387,7 @@ app.post('/submission-game', imgUpload.single('image'), loggedIn, isAdmin, funct
   console.log('Got body:', req.body);
   console.log(req.params);
   console.log(req);
+  
   var submission = req.body["game"];
   var filename = '';
   if(!req.file){
@@ -355,11 +405,13 @@ app.post('/submission-game', imgUpload.single('image'), loggedIn, isAdmin, funct
     db[submission] = {'characters': [], 'image': filename};
     res.redirect('http://' + serverIP + '/');
   }
+  saveDB(db);
 });
 
 app.post('/:game/submission-character', imgUpload.single('image'), loggedIn, isAdmin, function (req,res) {
   console.log('Got body:', req.body);
   console.log(req.params);
+  
   var game = req.params["game"];
   var submission = req.body["character"];
   var filename = '';
@@ -378,11 +430,13 @@ app.post('/:game/submission-character', imgUpload.single('image'), loggedIn, isA
     db[game][submission] = {'attacks': [], 'image': filename};
     res.redirect('http://' + serverIP + '/' + game);
   }
+  saveDB(db);
 });
 
 app.post('/submission/:game/:character/attack', imgUpload.single('image'), loggedIn, isAdmin, function (req,res) {
   console.log('Got body:', req.body);
   console.log(req.params);
+  
   var game = req.params["game"];
   var character = req.params["character"];
   var submission = req.body["move"];
@@ -408,11 +462,13 @@ app.post('/submission/:game/:character/attack', imgUpload.single('image'), logge
     db[game][character][submission] = {'name': submission, 'active': active, 'startup': startup, 'shield': shield, 'image': filename};
     res.redirect('http://' + serverIP + '/' + game + '/' + character);
   }
+  saveDB(db);
 });
 
 app.post('/submission/:game/:character/Scenarios', imgUpload.single('image'), loggedIn, isAdmin, function (req,res) {
   console.log('Got body:', req.body);
   console.log(req.params);
+  
   var game = req.params["game"];
   var character = req.params["character"];
   var submission = req.body["scenario"];
@@ -440,12 +496,15 @@ app.post('/submission/:game/:character/Scenarios', imgUpload.single('image'), lo
     db[game][character][submission] = {'name': submission, 'description': description, 'image': filename};
     res.redirect('http://' + serverIP + '/' + game + '/' + character + "/scenarios");
   }
+  saveDB(db);
 });
 
 app.post('/remove', imgUpload.single('image'), loggedIn, function(req, res){
   console.log(req.body);
   console.log(req.params);
+  
   if(users[req.user].cred != "admin") {
+    // Make suggection
     res.redirect('back');
   }
   else {
@@ -471,6 +530,7 @@ app.post('/remove', imgUpload.single('image'), loggedIn, function(req, res){
     }
     res.redirect('back'); //Redirect to suggestion page? submitted page
   }
+  saveDB(db);
 });
 
 app.listen(process.env.PORT || 8080);
