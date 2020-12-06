@@ -17,7 +17,7 @@ export default class Modal extends Component {
       return (
          <div>
             <ModalButton />
-            <ModalForm page={this.props.page}/>
+            <ModalForm page={this.props.page} game={this.props.game} character={this.props.character}/>
          </div>
       );
    }

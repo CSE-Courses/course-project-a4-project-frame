@@ -50,7 +50,7 @@ export default class Characters extends Component {
                 <div id="Characters">  
                     {this.getCharacters()}
                 </div>
-                <Modal page="characters"/>
+                <Modal page="characters" game={this.props.match.params.game}/>
             </div>
         );
     }

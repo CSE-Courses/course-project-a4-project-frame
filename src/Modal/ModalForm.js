@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReportForm from '../Forms/ReportForm';
+import RemoveForm from '../Forms/RemoveForm';
 import CharacterSubmissionForm from '../Forms/CharacterSubmissionForm'
 import GameSubmissionForm from '../Forms/GameSubmissionForm'
 import AttackSubmissionForm from '../Forms/AttackSubmissionForm'
@@ -13,20 +13,22 @@ export default class ModalForm extends Component {
     this.state = {
       form: ""
     };
-    this.reportClicked.bind(this);
+    this.removeClicked.bind(this);
     this.submissionClicked.bind(this);
   }
+  componentDidMount(){
 
-  reportClicked(){
-    this.setState({form: "report"});
-    document.getElementById('reportButton').style.backgroundColor = "darkgrey";
+  }
+  removeClicked(){
+    this.setState({form: "remove"});
+    document.getElementById('removeButton').style.backgroundColor = "darkgrey";
     document.getElementById('submissionButton').style.backgroundColor = "lightgrey";
   }
 
   submissionClicked(){
       this.setState({form: "submission"});
       document.getElementById('submissionButton').style.backgroundColor = "darkgrey";
-      document.getElementById('reportButton').style.backgroundColor = "lightgrey";
+      document.getElementById('removeButton').style.backgroundColor = "lightgrey";
   }
 
   render () {
@@ -41,8 +43,8 @@ export default class ModalForm extends Component {
             </svg>
           </div>
           <div id="forms">
-            <div id="reportButton" className="form">
-              <h1 onClick={this.reportClicked.bind(this)}>Report</h1>
+            <div id="removeButton" className="form">
+              <h1 onClick={this.removeClicked.bind(this)}>Remove</h1>
             </div>
             <div id="submissionButton" className="form">
               <h1 onClick={this.submissionClicked.bind(this)}>Submission</h1>
@@ -50,8 +52,8 @@ export default class ModalForm extends Component {
           </div>
           <div id="form">
             {
-            form == "report" ?
-            (<ReportForm />) :
+            form == "remove" ?
+            (<RemoveForm page={this.props.page} game={this.props.game} character={this.props.character}/>) :
             form == "submission" && this.props.page == "characters" ?
             (<CharacterSubmissionForm />):
             form == "submission" && this.props.page == "games" ?
